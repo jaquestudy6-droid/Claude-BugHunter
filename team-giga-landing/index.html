@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Team Giga | Coach Pedro Giga — Agende sua avaliação</title>
+  <meta name="description" content="Treino sob medida e acompanhamento de perto com o coach Pedro Giga. Agende sua avaliação e comece do jeito certo.">
+  <meta name="theme-color" content="#02060c">
+  <meta property="og:title" content="Team Giga | Coach Pedro Giga">
+  <meta property="og:description" content="A barra caiu. Agora é a sua vez. Agende sua avaliação.">
+  <meta property="og:image" content="assets/img/og-cover.jpg">
+  <link rel="icon" type="image/webp" href="assets/img/logo-team-giga-sm.webp">
+
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/big-shoulders-display-latin-wght-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/sora-latin-wght-normal.woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/img/coach-duotone.webp" fetchpriority="high">
+
+  <!-- Decide cedo (antes do primeiro paint) se a abertura com a barra vai rodar.
+       Sem JS ou com "reduzir movimento": a página já nasce aberta.
+       ?intro=0 pula a abertura (útil pra testar/compartilhar). -->
+  <script>
+    (function (d) {
+      var c = d.documentElement.classList;
+      c.add('js');
+      var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce && !/[?&]intro=0/.test(location.search)) {
+        c.add('intro-on');
+        // rede de segurança: se hero.js não carregar, abre o site mesmo assim
+        setTimeout(function () { c.add('is-live'); c.remove('intro-on'); }, 6000);
+      }
+    })(document);
+  </script>
+
+  <link rel="stylesheet" href="css/hero.css">
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- ============ HERO ============ -->
+  <main class="hero" id="top">
+
+    <!-- fundo: azul profundo + brilho no chão + grão + órbitas tracejadas -->
+    <div class="bg" aria-hidden="true">
+      <div class="bg__base"></div>
+      <div class="bg__rings">
+        <span class="ring ring--a"></span>
+        <span class="ring ring--b"></span>
+      </div>
+      <div class="bg__floor"></div>
+      <div class="bg__grain"></div>
+    </div>
+
+    <!-- foto do coach (duotone preto/azul), sangrando pra direita e pra baixo -->
+    <figure class="photo">
+      <div class="photo__in">
+        <img src="assets/img/coach-duotone.webp" width="1179" height="1037"
+             alt="Coach Pedro Giga sorrindo, de roupa preta" fetchpriority="high" decoding="async">
+      </div>
+    </figure>
+
+    <header class="nav">
+      <a class="brand" href="#top" aria-label="Team Giga — início" data-reveal style="--d:0">
+        <img src="assets/img/logo-team-giga.webp" width="512" height="512" alt="Team Giga">
+      </a>
+      <a class="nav__cta" href="#agendar" data-reveal style="--d:80">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="3"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/></svg>
+        Agendar
+      </a>
+    </header>
+
+    <div class="content">
+      <p class="eyebrow" data-reveal style="--d:120"><span class="live"></span>Coach · Team Giga</p>
+
+      <h1 class="title">
+        <span class="line"><span class="line__in l1"><span class="t-white">A barra caiu.</span></span></span>
+        <span class="line"><span class="line__in l2"><span class="t-white">Agora é a </span><em class="t-blue">sua vez.</em></span></span>
+      </h1>
+
+      <p class="lead" data-reveal style="--d:330">
+        Treino sob medida e acompanhamento de perto com o coach Pedro Giga.
+        Agende sua avaliação e comece do jeito certo.
+      </p>
+
+      <div class="cta" data-reveal style="--d:430">
+        <span class="btn-wrap">
+          <a class="btn" href="#agendar">
+            <span>Agendar minha avaliação</span>
+            <span class="btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+        </span>
+        <span class="cta__note">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          Escolha o melhor horário pra você
+        </span>
+      </div>
+    </div>
+
+    <!-- chips de vidro flutuando (referência do layout azul) -->
+    <ul class="pills">
+      <li class="pills__i pills__i--1" data-reveal style="--d:560"><span class="pill"><i></i>Treino sob medida</span></li>
+      <li class="pills__i pills__i--2" data-reveal style="--d:660"><span class="pill"><i></i>Acompanhamento de perto</span></li>
+      <li class="pills__i pills__i--3" data-reveal style="--d:760"><span class="pill"><i></i>Evolução real</span></li>
+    </ul>
+
+    <a class="ig" href="https://www.instagram.com/pedro_g1ga/" target="_blank" rel="noopener" data-reveal style="--d:820">
+      <span class="ig__ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg>
+      </span>
+      <span class="ig__txt"><b>@pedro_g1ga</b><small>Acompanhe no Instagram</small></span>
+    </a>
+
+    <div class="floor" aria-hidden="true"></div>
+
+    <!-- faixa em movimento, encosta no chão onde a barra cai -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <div class="ticker__group">
+          <span>Treino sob medida</span><i></i><span>Disciplina</span><i></i><span>Acompanhamento de perto</span><i></i><span>Evolução real</span><i></i><span>Team Giga</span><i></i>
+          <span>Treino sob medida</span><i></i><span>Disciplina</span><i></i><span>Acompanhamento de perto</span><i></i><span>Evolução real</span><i></i><span>Team Giga</span><i></i>
+          <span>Treino sob medida</span><i></i><span>Disciplina</span><i></i><span>Acompanhamento de perto</span><i></i><span>Evolução real</span><i></i><span>Team Giga</span><i></i>
+        </div>
+        <div class="ticker__group">
+          <span>Treino sob medida</span><i></i><span>Disciplina</span><i></i><span>Acompanhamento de perto</span><i></i><span>Evolução real</span><i></i><span>Team Giga</span><i></i>
+          <span>Treino sob medida</span><i></i><span>Disciplina</span><i></i><span>Acompanhamento de perto</span><i></i><span>Evolução real</span><i></i><span>Team Giga</span><i></i>
+          <span>Treino sob medida</span><i></i><span>Disciplina</span><i></i><span>Acompanhamento de perto</span><i></i><span>Evolução real</span><i></i><span>Team Giga</span><i></i>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ A BARRA ============
+       Fica fora do .hero de propósito: a abertura revela o hero em círculo
+       a partir do impacto, e a barra precisa estar visível enquanto cai. -->
+  <div class="barbell" aria-hidden="true">
+    <div class="barbell__glow"></div>
+    <div class="barbell__body">
+      <div class="plates plates--l">
+        <i class="p p--tip"></i><i class="p p--collar"></i><i class="p p--s"></i><i class="p p--m"></i><i class="p p--l"></i><i class="p p--l"></i>
+      </div>
+      <div class="rod"></div>
+      <div class="plates plates--r">
+        <i class="p p--tip"></i><i class="p p--collar"></i><i class="p p--s"></i><i class="p p--m"></i><i class="p p--l"></i><i class="p p--l"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- cortina da abertura: duas folhas que se abrem a partir do eixo da barra no impacto
+       (só transform → roda na GPU e não repinta o hero a cada quadro) -->
+  <div class="shutters" aria-hidden="true">
+    <i class="shutter shutter--top"></i>
+    <i class="shutter shutter--bot"></i>
+  </div>
+
+  <!-- efeitos do impacto (flash, ondas de choque, pó de magnésio) -->
+  <div class="fx" aria-hidden="true">
+    <div class="fx__flash"></div>
+    <div class="fx__ring"></div>
+    <div class="fx__ring fx__ring--2"></div>
+  </div>
+</div>
+
+<!-- PRÓXIMA PARTE: <section id="agendar"> (formulário de agendamento) entra aqui.
+     O hero só convida; o formulário fica na seção seguinte. -->
+
+<script src="js/hero.js" defer></script>
+</body>
+</html>

@@ -34,7 +34,7 @@ Tipografia: **Big Shoulders Display** (títulos, atlética/industrial) + **Sora*
 - **Foto**: assumi que a 1ª foto enviada é do coach. Para trocar, gere outra com o mesmo tratamento e substitua `assets/img/coach-duotone.webp`.
 - **Instagram**: o card aponta para `instagram.com/pedro_g1ga`. O perfil `@teampedrogiga` ainda não foi usado.
 - `href="#agendar"`: aponta para a seção do formulário (próxima parte).
-- `og:image` (`assets/img/og-cover.jpg`) está com caminho relativo; no deploy, trocar pela URL absoluta do domínio para a prévia de link funcionar no WhatsApp/redes.
+- `og:image` (`assets/img/og-cover.webp`) está com caminho relativo; no deploy, trocar pela URL absoluta do domínio para a prévia de link funcionar no WhatsApp/redes.
 
 ## Estrutura
 

@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Media Quest</title>
+<meta name="description" content="Jogo de estudo de social media: quizzes, flashcards, simuladores e conquistas.">
+<style>
+:root{
+  --bg:#f5f6fb; --card:#ffffff; --ink:#1b1f33; --muted:#585f7d; --line:#dfe3f0;
+  --brand:#5b3fe0; --brand-ink:#ffffff; --brand-soft:#ece8ff;
+  --good:#0f7a57; --good-bg:#dff5ea; --bad:#b1223a; --bad-bg:#fde8ec;
+  --warn:#7a5200; --warn-bg:#fff2cf; --accent:#e8553a;
+  --shadow:0 1px 2px rgba(20,24,50,.06),0 6px 18px rgba(20,24,50,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#10121c; --card:#1a1d2d; --ink:#eef0fd; --muted:#a6acc8; --line:#2c3049;
+    --brand:#a794ff; --brand-ink:#14162a; --brand-soft:#2a2850;
+    --good:#52d6a5; --good-bg:#133628; --bad:#ff93a6; --bad-bg:#3b1a23;
+    --warn:#f4c870; --warn-bg:#3a2f14; --accent:#ff9c80;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10121c; --card:#1a1d2d; --ink:#eef0fd; --muted:#a6acc8; --line:#2c3049;
+  --brand:#a794ff; --brand-ink:#14162a; --brand-soft:#2a2850;
+  --good:#52d6a5; --good-bg:#133628; --bad:#ff93a6; --bad-bg:#3b1a23;
+  --warn:#f4c870; --warn-bg:#3a2f14; --accent:#ff9c80;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+.top-row{display:flex;align-items:center;gap:12px;padding:10px 0;flex-wrap:wrap}
+.logo{font-weight:800;font-size:1.1rem;letter-spacing:-.01em}
+.logo span{color:var(--brand)}
+.grow{flex:1}
+.lvl{display:flex;align-items:center;gap:10px;min-width:220px;flex:1 1 260px}
+.lvl-badge{font-weight:700;background:var(--brand-soft);color:var(--brand);padding:3px 10px;border-radius:999px;font-size:.85rem;white-space:nowrap}
+.bar{height:10px;background:var(--line);border-radius:999px;overflow:hidden;flex:1}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--accent));width:0;transition:width .4s ease}
+.xp-num{font-size:.85rem;color:var(--muted);white-space:nowrap}
+button,.btn{font:inherit;cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:10px;text-decoration:none;min-height:40px}
+.btn:hover{border-color:var(--brand)}
+.btn:focus-visible,.tab:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.btn.primary{background:var(--brand);color:var(--brand-ink);border-color:var(--brand);font-weight:600}
+.btn.ghost{background:transparent}
+.btn.small{padding:4px 10px;min-height:32px;font-size:.88rem}
+nav.tabs{display:flex;gap:6px;overflow-x:auto;padding:0 0 8px}
+.tab{border:1px solid transparent;background:transparent;color:var(--muted);padding:8px 14px;border-radius:10px;white-space:nowrap;font-weight:600;min-height:40px}
+.tab[aria-selected="true"]{background:var(--brand-soft);color:var(--brand);border-color:var(--brand)}
+main{padding:20px 0 60px}
+h1,h2,h3{line-height:1.25;margin:0 0 .5em}
+h2{font-size:1.35rem}
+h3{font-size:1.08rem}
+.muted{color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:12px}
+.grid.cols2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid.cols3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.world{margin:22px 0 8px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.world small{color:var(--muted)}
+.mod{display:flex;flex-direction:column;gap:8px}
+.mod .num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--brand-soft);color:var(--brand);font-weight:800}
+.mod.done{border-color:var(--good)}
+.mod.done .num{background:var(--good-bg);color:var(--good)}
+.mod .head{display:flex;gap:10px;align-items:center}
+.mod .title{font-weight:700}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.78rem;font-weight:700;background:var(--brand-soft);color:var(--brand)}
+.pill.good{background:var(--good-bg);color:var(--good)}
+.pill.warn{background:var(--warn-bg);color:var(--warn)}
+label.chk{display:inline-flex;gap:8px;align-items:center;cursor:pointer;min-height:32px}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--brand)}
+.opt{display:block;width:100%;text-align:left;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:12px 14px;border-radius:12px;margin:8px 0;min-height:48px}
+.opt:hover:not([disabled]){border-color:var(--brand)}
+.opt.right{border-color:var(--good);background:var(--good-bg)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:10px;padding:12px 14px;border-radius:12px;background:var(--brand-soft)}
+.fb.good{background:var(--good-bg)}
+.fb.bad{background:var(--bad-bg)}
+.fcard{min-height:200px;display:grid;place-items:center;text-align:center;padding:24px;border:2px dashed var(--brand);border-radius:18px;background:var(--card);cursor:pointer;font-size:1.15rem}
+.fcard .tag{font-size:.8rem;color:var(--muted);display:block;margin-bottom:8px}
+.stat{display:flex;gap:8px;flex-wrap:wrap}
+.stat .pill{font-size:.85rem}
+.sublabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.sublabs button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 12px;border-radius:999px;min-height:40px}
+.sublabs button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand);font-weight:700}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:.85rem;color:var(--muted);font-weight:600}
+input[type=number],input[type=text],select,textarea{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-height:40px;width:100%}
+input[type=range]{width:100%;accent-color:var(--brand)}
+.res{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.res b{font-size:1.1rem}
+.res small{color:var(--muted);display:block}
+.wave{display:flex;align-items:center;gap:10px;margin:6px 0}
+.wave .w{width:78px;font-size:.85rem;color:var(--muted)}
+.wave .b{flex:1;height:22px;background:var(--line);border-radius:8px;overflow:hidden}
+.wave .b i{display:block;height:100%;background:var(--brand);transition:width .35s ease}
+.wave .n{width:110px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.badge{display:flex;gap:12px;align-items:flex-start;opacity:.55;filter:grayscale(1)}
+.badge.on{opacity:1;filter:none;border-color:var(--good)}
+.badge .ic{font-size:1.8rem;line-height:1}
+.toast-wrap{position:fixed;left:0;right:0;bottom:16px;display:grid;justify-items:center;gap:8px;pointer-events:none;z-index:50}
+.toast{background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;box-shadow:var(--shadow);animation:pop .3s ease}
+@keyframes pop{from{transform:translateY(10px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+table.t{width:100%;border-collapse:collapse;font-size:.92rem}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:8px;text-align:left}
+.notice{border-left:4px solid var(--warn);background:var(--warn-bg);color:var(--ink);padding:10px 12px;border-radius:8px;font-size:.92rem}
+.sr{position:absolute;left:-9999px}
+@media (max-width:560px){ .wave .n{width:84px;font-size:.85rem} .lvl{min-width:100%} }
+@media (max-width:700px){ header.top{position:static} }
+@media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="top-row">
+      <div class="logo">📱 Social Media <span>Quest</span></div>
+      <div class="lvl" aria-label="Seu nível e XP">
+        <span class="lvl-badge" id="lvlBadge">Nível</span>
+        <div class="bar" role="progressbar" aria-label="Progresso para o próximo nível" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="xpBarWrap"><i id="xpBar"></i></div>
+        <span class="xp-num" id="xpNum">0 XP</span>
+      </div>
+      <button class="btn small ghost" id="themeBtn" type="button" aria-label="Alternar tema claro/escuro">🌓</button>
+      <button class="btn small ghost" id="resetBtn" type="button">Zerar</button>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Seções do jogo" id="tabs"></nav>
+  </div>
+</header>
+<main class="wrap" id="view" tabindex="-1"></main>
+<div class="toast-wrap" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+<script>
+"use strict";
+
+/* =========================== DADOS =========================== */
+var MODULES = [
+  {id:1,w:1,t:"O que é social media",f:"01-o-que-e-social-media.md",xp:100},
+  {id:2,w:1,t:"Mapa das plataformas",f:"02-mapa-das-plataformas.md",xp:100},
+  {id:3,w:1,t:"Como funcionam os algoritmos",f:"03-algoritmos.md",xp:100},
+  {id:4,w:2,t:"Estratégia",f:"04-estrategia.md",xp:100},
+  {id:5,w:2,t:"Conteúdo & criatividade",f:"05-conteudo-e-criatividade.md",xp:100},
+  {id:6,w:3,t:"Produção visual e vídeo",f:"06-producao-visual-e-video.md",xp:100},
+  {id:7,w:3,t:"Comunidade & marca pessoal",f:"07-comunidade-e-marca-pessoal.md",xp:100},
+  {id:8,w:4,t:"Métricas e análise",f:"08-metricas-e-analise.md",xp:100},
+  {id:9,w:4,t:"Anúncios pagos",f:"09-anuncios-pagos.md",xp:100},
+  {id:10,w:4,t:"Influenciadores & social commerce",f:"10-influenciadores-e-social-commerce.md",xp:100},
+  {id:11,w:5,t:"Crises, ética, lei e segurança",f:"11-crises-etica-lei-seguranca.md",xp:100},
+  {id:12,w:5,t:"IA, ferramentas e operação",f:"12-ia-ferramentas-operacao.md",xp:100},
+  {id:13,w:5,t:"Carreira, negócio e monetização",f:"13-carreira-negocio-monetizacao.md",xp:100},
+  {id:14,w:5,t:"Estratégia avançada",f:"14-estrategia-avancada.md",xp:100},
+  {id:15,w:5,t:"Projeto final: plano de 90 dias",f:"15-projeto-final-plano-90-dias.md",xp:300}
+];
+var WORLDS = {
+  1:"🌱 Mundo 1 · Fundamentos", 2:"🧠 Mundo 2 · Planejamento", 3:"🎬 Mundo 3 · Produção & Pessoas",
+  4:"📊 Mundo 4 · Dados & Crescimento", 5:"👑 Mundo 5 · Maestria"
+};
+var LEVELS = [
+  {n:"🧳 Turista",xp:0},{n:"🧭 Explorador",xp:150},{n:"✏️ Criador",xp:500},
+  {n:"🧠 Estrategista",xp:1000},{n:"🛡️ Mestre",xp:1800},{n:"👑 Lenda",xp:2400}
+];
+
+/* Perguntas: m = módulo, q = enunciado, o = opções, a = índice da correta, e = explicação */
+var RAW_Q = [
+ {m:1,q:"Qual a melhor definição de 'social media' como profissão?",o:["A plataforma onde as pessoas se conectam","Quem planeja, cria, publica, atende e mede a presença de marcas ou pessoas nas redes","Um tipo de anúncio de TV","Um aplicativo de edição de vídeo"],a:1,e:"Rede social é o lugar (plataforma). Social media é a atividade/profissão de cuidar da presença nas redes."},
+ {m:1,q:"Uma cliente posta stories elogiando sua marca, sem ser paga. Isso é mídia…",o:["Paga","Própria","Ganha","Alugada"],a:2,e:"Mídia ganha (earned): os outros falam de você espontaneamente."},
+ {m:1,q:"A grande ruptura da mídia social em relação à TV é passar de…",o:["'um para muitos' para 'muitos para muitos'","vídeo para texto","local para global","pago para gratuito"],a:0,e:"Na mídia social todos podem falar, responder e compartilhar: a audiência também é emissora."},
+ {m:1,q:"'Economia da atenção' significa que…",o:["o dinheiro deixou de importar","a atenção das pessoas é o recurso escasso e disputado","só quem tem mais seguidores ganha","anúncios foram abolidos"],a:1,e:"Plataformas e marcas competem pelo tempo e atenção das pessoas."},
+ {m:1,q:"A mudança de 'grafo social' para 'grafo de interesses' explica por que…",o:["contas pequenas podem viralizar via recomendação","seguidores deixaram de existir","plataformas pararam de usar dados","vídeo longo foi proibido"],a:0,e:"Quando o feed recomenda por interesse, conteúdo bom pode chegar a quem não te segue."},
+
+ {m:2,q:"Qual NÃO é uma das 5 perguntas para entender uma plataforma?",o:["Por que as pessoas abrem este app?","Como o conteúdo é descoberto?","Qual a cor do logotipo?","Qual a vida útil do conteúdo?"],a:2,e:"As perguntas são: intenção, descoberta, vida útil, formato nativo e conversão."},
+ {m:2,q:"O método 1-2-3 recomenda…",o:["1 post, 2 redes, 3 vídeos","dominar 1 rede, ocupar 2 e adaptar o melhor conteúdo para 3","postar 1 vez por dia e 2 por semana","estar em 1 rede por vez"],a:1,e:"Foco evita dispersão: estar em poucas redes bem é melhor do que em muitas mal."},
+ {m:2,q:"Qual rede costuma ter a MAIOR vida útil de conteúdo (busca + recomendação por meses ou anos)?",o:["Stories","YouTube","Posts do X","Status do WhatsApp"],a:1,e:"YouTube (e Pinterest) trabalham muito com busca, então o conteúdo pode render por muito tempo."},
+ {m:2,q:"Para uma consultoria B2B que busca autoridade, qual rede é a mais natural?",o:["Pinterest","LinkedIn","Snapchat","Twitch"],a:1,e:"O LinkedIn é o ambiente profissional e de negócios."},
+ {m:2,q:"Por que repostar o mesmo arquivo sem adaptar costuma ser ruim?",o:["Cada rede tem formato, cultura e algoritmo próprios","Reels é ilegal","Vídeos só podem ser postados uma vez","Porque aumenta demais o alcance"],a:0,e:"Conteúdo nativo respeita a linguagem de cada plataforma."},
+
+ {m:3,q:"No funil de recomendação, a etapa de 'previsão' faz o quê?",o:["Escolhe a cor do app","Estima a probabilidade de ações (assistir, curtir, enviar, pular)","Apaga conteúdos","Define o preço do anúncio"],a:1,e:"Modelos preveem como a pessoa vai reagir; depois o ranking ordena."},
+ {m:3,q:"Qual sinal costuma indicar que um conteúdo vale ser mostrado a outras pessoas?",o:["Compartilhamento/envio a amigos","Hashtag longa","Quantidade de emojis","O horário exato do post"],a:0,e:"Compartilhar é um voto de valor muito forte, sobretudo para atingir não seguidores."},
+ {m:3,q:"Mito ou verdade: existe um horário mágico que funciona para todos os perfis.",o:["Verdade","Mito"],a:1,e:"O melhor horário é o do SEU público; use seus insights."},
+ {m:3,q:"As 'ondas de teste' significam que…",o:["o vídeo é mostrado a um grupo pequeno e ampliado se a reação for boa","o vídeo vai para todo mundo de uma vez","só seguidores veem","o vídeo é apagado após 24 h"],a:0,e:"A distribuição funciona como uma audição: a reação da primeira onda decide a segunda."},
+ {m:3,q:"Por que blogs que informam 'pesos exatos' de cada sinal merecem cautela?",o:["Plataformas raramente divulgam pesos; são inferências de terceiros","Os pesos são públicos","Nunca mudam","São sempre oficiais"],a:0,e:"Trate como hipótese para testar, não como verdade."},
+ {m:3,q:"Retenção alta + muitos envios + poucas curtidas costuma indicar…",o:["conteúdo valioso e compartilhável","conteúdo ruim","spam","bots"],a:0,e:"Curtidas são um sinal mais fraco que retenção e envios."},
+
+ {m:4,q:"Qual é um objetivo SMART?",o:["Quero crescer","Aumentar o alcance em não seguidores de 20 mil para 35 mil em 90 dias, com 3 Reels por semana","Viralizar","Ser famoso"],a:1,e:"É específico, mensurável, relevante e tem prazo."},
+ {m:4,q:"Pilares de conteúdo servem para…",o:["dar foco e abundância de ideias","aumentar o preço","substituir a estratégia","evitar métricas"],a:0,e:"3 a 5 temas recorrentes constroem identidade e facilitam a criação."},
+ {m:4,q:"No funil, o conteúdo de 'fundo' tem a função de…",o:["atrair gente nova","facilitar a decisão (depoimentos, FAQ, oferta)","apenas entreter","substituir o atendimento"],a:1,e:"Fundo de funil ajuda quem já considera comprar a decidir."},
+ {m:4,q:"Na Bússola de 8 passos, qual vem logo depois do Diagnóstico?",o:["Calendário","Objetivos","Canais","Pilares"],a:1,e:"Ordem: diagnóstico → objetivos → público → posicionamento → canais → pilares → operação → medir."},
+ {m:4,q:"O 'teste dos 5 segundos' serve para…",o:["ver se alguém entende o que a marca faz ao olhar o perfil por 5 s","medir a velocidade da internet","contar seguidores","escolher o horário do post"],a:0,e:"Se a pessoa não entende rápido, ajuste bio, foto, destaques e posts fixados."},
+
+ {m:5,q:"As 3 perguntas que todo conteúdo responde, em ordem:",o:["Isso é pra mim? Vale meu tempo? E agora?","Quem? Quando? Onde?","Curtir? Comentar? Compartilhar?","Preço? Prazo? Frete?"],a:0,e:"Gancho, valor e CTA respondem a essas três perguntas."},
+ {m:5,q:"Qual é um bom CTA?",o:["Curta e compartilhe!","Salve este post para consultar na hora da compra","Clique aqui","Veja"],a:1,e:"CTA forte é específico, fácil e tem motivo."},
+ {m:5,q:"A fórmula de storytelling ABT significa…",o:["And, But, Therefore (E… mas… então…)","Attention, Bait, Trade","Ads, Budget, Targeting","Action, Brand, Trust"],a:0,e:"Ex.: 'Eu postava todo dia e ninguém via, mas testei ganchos, então meu alcance dobrou.'"},
+ {m:5,q:"#PraCegoVer serve para…",o:["aumentar seguidores","acompanhar imagens com descrição para pessoas cegas ou com baixa visão","marcar anúncios","indicar sorteio"],a:1,e:"É uma prática de acessibilidade muito usada no Brasil."},
+ {m:5,q:"Qual gancho é o mais forte (claro, específico e com contraste)?",o:["Oi gente, hoje vou falar de dinheiro","Dicas financeiras","Você perde dinheiro todo mês na poupança. Veja a conta de 30 segundos","Assista até o final"],a:2,e:"Tem tema claro, tensão e promessa específica."},
+
+ {m:6,q:"A regra de cores 60-30-10 sugere…",o:["60% cor base, 30% de apoio e 10% de destaque","60 fontes, 30 cores e 10 logos","60 posts, 30 vídeos e 10 lives","60% de texto, 30% imagem, 10% logo"],a:0,e:"Ajuda a manter harmonia e consistência visual."},
+ {m:6,q:"Em vídeos de celular, o que mais derruba a percepção de qualidade?",o:["Áudio ruim","Resolução 4K","Falta de filtro","Falta de música"],a:0,e:"Imagem simples é perdoada; áudio ruim faz as pessoas saírem."},
+ {m:6,q:"'Zona segura' em vídeo vertical é…",o:["a área livre de elementos da interface onde o texto importante fica visível","um local seguro para gravar","onde esconder o logo","uma área paga"],a:0,e:"Botões, nome e legenda cobrem parte da tela; deixe topo e base livres."},
+ {m:6,q:"Usar trecho de música famosa em anúncio sem licença…",o:["é permitido se for 'sem fins lucrativos'","pode violar direitos autorais","é livre no Brasil","garante alcance"],a:1,e:"Direitos autorais exigem licença/autorização; use bibliotecas comerciais."},
+ {m:6,q:"O 'teste de 1 segundo' verifica…",o:["se a pessoa entende a ideia principal da arte em 1 s","a velocidade do upload","a duração do vídeo","o número de cores"],a:0,e:"Hierarquia visual clara = entendimento rápido."},
+
+ {m:7,q:"O que diferencia comunidade de audiência?",o:["A comunidade participa e interage entre si","O tamanho","Nada","O preço"],a:0,e:"Audiência assiste; comunidade conversa, ajuda e pertence."},
+ {m:7,q:"Na sigla ROTA, o 'T' significa…",o:["Terminar","Transferir para canal privado","Trocar","Treinar"],a:1,e:"Reconhecer, Oferecer solução, Transferir para o privado, Acompanhar."},
+ {m:7,q:"Apagar uma crítica legítima costuma…",o:["resolver o problema","piorar a situação (efeito Streisand)","aumentar vendas","ser exigido pela plataforma"],a:1,e:"Parece ocultação e pode viralizar a tentativa de esconder."},
+ {m:7,q:"O tripé da marca pessoal é…",o:["Quem sou, para quem, qual transformação","Foto, bio e link","Reels, Stories e Lives","Curtidas, comentários e shares"],a:0,e:"Define posicionamento: valores/expertise, público e benefício."},
+ {m:7,q:"Qual é a melhor resposta a um comentário público de reclamação por atraso?",o:["Entre em contato com o SAC.","Oi, Carla! Sentimos muito pelo atraso. Pode nos chamar na DM com o número do pedido? Vamos verificar agora.","Leia nossos termos.","(Apagar o comentário)"],a:1,e:"Reconhece, usa o nome, oferece solução e leva ao canal privado."},
+
+ {m:8,q:"Qual a diferença entre alcance e impressões?",o:["Alcance = pessoas únicas; impressões = total de exibições","São idênticos","Alcance = cliques; impressões = curtidas","Alcance = pago; impressões = orgânico"],a:0,e:"A mesma pessoa pode gerar várias impressões."},
+ {m:8,q:"Um post teve 150 interações e alcance de 6.000. Qual o ER por alcance?",o:["2,5%","4%","0,25%","25%"],a:0,e:"150 ÷ 6.000 × 100 = 2,5%."},
+ {m:8,q:"ROAS é…",o:["receita ÷ gasto em anúncios","gasto ÷ receita","lucro ÷ receita","cliques ÷ impressões"],a:0,e:"Não é lucro: ignora custo do produto, impostos, frete etc."},
+ {m:8,q:"Muitas impressões e CTR baixo sugerem…",o:["capa/título/thumbnail fracos","retenção ruim","público ótimo","pixel quebrado"],a:0,e:"A embalagem não gera clique; teste novas capas/títulos."},
+ {m:8,q:"Em testes A/B, por que mudar uma variável por vez?",o:["Para saber o que causou o efeito","Para gastar menos","É obrigatório pela plataforma","Para aumentar o CPM"],a:0,e:"Mudando várias coisas juntas você não sabe qual funcionou."},
+ {m:8,q:"Você gastou R$ 200 e teve 50.000 impressões. Qual o CPM?",o:["R$ 4,00","R$ 0,25","R$ 40,00","R$ 400,00"],a:0,e:"CPM = (200 ÷ 50.000) × 1.000 = R$ 4,00."},
+
+ {m:9,q:"Qual a estrutura de campanha no Meta Ads?",o:["Campanha → Conjunto → Anúncio","Anúncio → Campanha → Conjunto","Perfil → Post → Story","Pixel → Lead → Venda"],a:0,e:"Objetivo (campanha), público/orçamento (conjunto), criativo (anúncio)."},
+ {m:9,q:"Por que escolher 'Tráfego' e esperar vendas é um erro?",o:["A plataforma otimiza para o que você pede (cliques)","Tráfego é proibido","Vendas só vêm do orgânico","Tráfego é caro demais"],a:0,e:"Peça à plataforma o resultado que você realmente quer."},
+ {m:9,q:"Remarketing é…",o:["reimpactar quem já interagiu ou visitou","anunciar para ninguém","remarcar preços","trocar de plataforma"],a:0,e:"Costuma ter bom custo por resultado, mas é um público pequeno."},
+ {m:9,q:"Pixel e API de conversões servem para…",o:["informar eventos (visita, compra) para medir e otimizar","editar vídeos","hospedar sites","escolher hashtags"],a:0,e:"O algoritmo de anúncios aprende com os seus eventos."},
+ {m:9,q:"Frequência alta + resultados caindo sugerem…",o:["fadiga de criativo","pixel perfeito","necessidade de mais orçamento","público melhor"],a:0,e:"As pessoas já viram demais o mesmo anúncio: renove criativos."},
+
+ {m:10,q:"Regra de ouro ao escolher um criador:",o:["adequação de audiência vale mais que nº de seguidores","mais seguidores sempre","o menor preço","mais posts por dia"],a:0,e:"Quem fala com o seu público certo e com confiança converte mais."},
+ {m:10,q:"Qual é um sinal de alerta em um criador?",o:["Comentários específicos e variados","Picos súbitos de seguidores e comentários genéricos","Histórico consistente","Métricas transparentes"],a:1,e:"Pode indicar seguidores falsos ou engajamento comprado."},
+ {m:10,q:"Publicidade em parceria com criador deve ser…",o:["escondida","identificada de forma clara","apagada depois","só em Stories"],a:1,e:"CDC/CONAR e regras das plataformas exigem identificação."},
+ {m:10,q:"UGC é…",o:["conteúdo criado por usuários/clientes","um tipo de anúncio pago","um formato de live","um algoritmo"],a:0,e:"User-Generated Content: ótima prova social e material para anúncios."},
+ {m:10,q:"Social commerce é…",o:["descoberta, decisão e compra dentro do ambiente social","comércio físico","venda só por e-mail","apenas marketplaces"],a:0,e:"Vitrines, lives de venda, WhatsApp Business, posts marcáveis etc."},
+
+ {m:11,q:"Os 5 As do playbook de crise são…",o:["Pause, Apure, Assuma, Aja, Aprenda","Ataque, Apague, Ameace, Anuncie, Ande","Avise, Anuncie, Aposte, Avance, Aguarde","Aceite, Ajuste, Aprove, Ative, Arquive"],a:0,e:"Pausar, apurar fatos, assumir, agir e aprender."},
+ {m:11,q:"Primeira ação ao identificar uma crise de nível 3 (ampla repercussão):",o:["Pausar agendamentos e acionar o comitê","Postar um meme","Apagar comentários","Ignorar"],a:0,e:"Posts alegres agendados podem piorar a crise; alinhe o time e apure os fatos."},
+ {m:11,q:"A LGPD trata principalmente de…",o:["proteção de dados pessoais","direitos autorais","publicidade","sorteios"],a:0,e:"Lei 13.709/2018: base legal, finalidade, transparência e segurança."},
+ {m:11,q:"Qual é uma boa prática de segurança de contas?",o:["2FA por app autenticador e permissões mínimas","Mesma senha em todas as contas","Compartilhar códigos de verificação","Dar admin a todos"],a:0,e:"Também: gerenciador de senhas e revogar acessos de quem saiu."},
+ {m:11,q:"Em social listening, a análise automática de sentimento…",o:["erra com ironia e gírias, então convém revisar amostras","é sempre perfeita","não existe","só funciona em inglês"],a:0,e:"Em português, ironia e memes são o ponto mais fraco."},
+
+ {m:12,q:"O fluxo 'humano no comando' termina com…",o:["verificar, publicar e medir","somente gerar","postar sem revisar","apagar os prompts"],a:0,e:"IA acelera; a responsabilidade e a checagem são humanas."},
+ {m:12,q:"Um risco clássico da IA generativa é…",o:["alucinação (inventar fatos)","estar sempre correta","nunca errar","não usar dados"],a:0,e:"Verifique números, estudos e citações antes de publicar."},
+ {m:12,q:"R-C-T-F-R em prompts significa…",o:["Papel, Contexto, Tarefa, Formato, Restrições","Rede, Canal, Texto, Foto, Resultado","Rápido, Claro, Total, Fácil, Real","Regra, Criativo, Tema, Fonte, Revisão"],a:0,e:"Estrutura simples para briefar bem a IA."},
+ {m:12,q:"Automatizar curtidas e comentários em massa…",o:["viola regras e pode bloquear a conta","é recomendado","aumenta a confiança","não tem risco"],a:0,e:"Interações falsas ou em massa são tratadas como spam."},
+ {m:12,q:"Antes de colar dados de clientes em uma ferramenta de IA, você deve…",o:["checar a política de privacidade e evitar dados pessoais","nada","postar publicamente","enviar a amigos"],a:0,e:"Privacidade e LGPD valem também para ferramentas de IA."},
+
+ {m:13,q:"Por que as 'horas faturáveis' são menos que as horas trabalhadas?",o:["Parte do tempo vai para prospecção, reuniões, administração e estudo","Ninguém trabalha o mês todo","Por lei","Por erro de cálculo"],a:0,e:"Se você contar todas as horas como faturáveis, vai subprecificar."},
+ {m:13,q:"Preço-hora mínimo: (R$ 4.000 + R$ 800) ÷ 60 horas faturáveis =",o:["R$ 80","R$ 60","R$ 100","R$ 48"],a:0,e:"4.800 ÷ 60 = 80."},
+ {m:13,q:"Qual é um sinal de promessa milagrosa?",o:["Resultados garantidos e urgência artificial","Mostra riscos","Mostra casos reais","Política de reembolso clara"],a:0,e:"Desconfie de 'segredos' e de pressão para decidir na hora."},
+ {m:13,q:"Um estudo de caso de portfólio inclui…",o:["contexto, objetivo, estratégia, execução, resultados e aprendizados","só prints de curtidas","só o logo","só o preço"],a:0,e:"Mostra seu raciocínio e resultados com honestidade."},
+
+ {m:14,q:"Qual a diferença entre funil e loop?",o:["Funil é linear; no loop a saída de um ciclo alimenta o próximo","São iguais","Loop é sempre pago","Funil é circular"],a:0,e:"Loops se retroalimentam; esteiras dependem do seu esforço contínuo."},
+ {m:14,q:"ICE significa…",o:["Impacto, Confiança e Facilidade","Instagram, Criadores e Engajamento","Ideia, Criativo e Execução","Interesse, Compra e Entrega"],a:0,e:"Método simples para priorizar experimentos."},
+ {m:14,q:"Por que 'só performance' é perigoso a longo prazo?",o:["Esgota a demanda existente e o custo por resultado tende a subir","Não mede nada","É proibido","Não usa anúncios"],a:0,e:"Marca constrói demanda futura; performance colhe a demanda existente."},
+ {m:14,q:"Incrementalidade mede…",o:["o efeito causal real de uma ação (o que não ocorreria sem ela)","o total de curtidas","o número de posts","os seguidores"],a:0,e:"Geralmente avaliada com grupos de controle (holdout) ou testes geográficos."},
+ {m:14,q:"Qual destes é 'terra própria'?",o:["E-mail, site e comunidade própria","Perfis em redes sociais","Apenas TikTok","Reels"],a:0,e:"Terra alugada: plataformas. Terra própria: canais que você controla."},
+
+ {m:15,q:"Quantos entregáveis tem o Projeto Final?",o:["10","3","5","20"],a:0,e:"Diagnóstico, estratégia, linha editorial, calendário, conteúdos, comunidade, métricas, mídia/parcerias, crise/conformidade e relatório do mês 1."},
+ {m:15,q:"O Projeto Final inclui executar quantos dias de publicação?",o:["30 dias","7 dias","90 dias de execução completa","Nenhum"],a:0,e:"Plano de 90 dias com 30 dias de execução e relatório."}
+];
+var QUESTIONS = (function(){
+  var cnt = {};
+  return RAW_Q.map(function(q){ cnt[q.m]=(cnt[q.m]||0)+1; q.id = q.m+"-"+cnt[q.m]; return q; });
+})();
+
+var RAW_CARDS = [
+ {m:1,f:"Rede social × social media",b:"Rede social = plataforma (o lugar). Social media = profissão/atividade de cuidar da presença nas redes."},
+ {m:1,f:"Mídia própria, paga, ganha",b:"Própria: você controla (perfil, site, e-mail). Paga: você paga para ser visto. Ganha: os outros falam de você espontaneamente."},
+ {m:1,f:"Economia da atenção",b:"Modelo em que a atenção das pessoas é o recurso escasso, disputado e vendido (via anúncios)."},
+ {m:1,f:"Grafo social × grafo de interesses",b:"Social: vejo o que quem sigo posta. Interesses: vejo o que o sistema prevê que vou gostar, venha de quem vier."},
+ {m:2,f:"As 5 perguntas sobre uma plataforma",b:"Por que abrem o app? Como o conteúdo é descoberto? Qual a vida útil? Qual o formato nativo? Onde está a conversão?"},
+ {m:2,f:"Método 1-2-3",b:"Dominar 1 rede, ocupar 2 e adaptar o melhor conteúdo para 3."},
+ {m:2,f:"Conteúdo nativo",b:"Feito no formato, na linguagem e na cultura da plataforma (não um simples copiar e colar)."},
+ {m:2,f:"Proporção do vídeo vertical",b:"9:16 (1080×1920) para Reels, TikTok, Shorts e Stories. Respeite as zonas seguras."},
+ {m:3,f:"Funil de recomendação (5 etapas)",b:"Inventário → Previsão → Ranking → Regras e diversidade → Aprendizado."},
+ {m:3,f:"Sinais positivos",b:"Tempo assistido/retenção, compartilhamentos/envios, salvamentos, comentários, curtidas, seguir a partir do conteúdo."},
+ {m:3,f:"Sinais negativos",b:"Pular rápido, 'não tenho interesse', ocultar/silenciar, denúncias, baixa qualidade, clickbait que não entrega."},
+ {m:3,f:"Ondas de teste",b:"O conteúdo é mostrado a um grupo pequeno e ampliado se a reação for boa."},
+ {m:4,f:"Bússola de 8 passos",b:"Diagnóstico, Objetivos, Público, Posicionamento, Canais, Pilares/formatos, Operação, Medir e revisar."},
+ {m:4,f:"SMART",b:"Específico, Mensurável, Alcançável, Relevante e Temporal (com prazo)."},
+ {m:4,f:"Funil de conteúdo",b:"Topo: descoberta. Meio: consideração. Fundo: decisão. Pós: retenção/advocacy."},
+ {m:4,f:"Proposta de valor (modelo)",b:"Para [público] que [necessidade], [marca] é [categoria] que [benefício], diferente de [alternativa], porque [prova]."},
+ {m:5,f:"Estrutura do conteúdo",b:"Gancho → Valor (corpo) → CTA."},
+ {m:5,f:"7 tipos de gancho",b:"Curiosidade, contraintuitivo, dor, promessa/resultado, lista/número, história, prova/autoridade."},
+ {m:5,f:"ABT / PAS / AIDA / BAB",b:"ABT: E… mas… então. PAS: Problema, Agitação, Solução. AIDA: Atenção, Interesse, Desejo, Ação. BAB: Antes, Depois, Ponte."},
+ {m:5,f:"CTA forte",b:"Específico, fácil e com motivo (ex.: 'Salve este post para consultar na hora da compra')."},
+ {m:5,f:"#PraCegoVer e CamelCase",b:"Descrição de imagem para pessoas cegas/baixa visão; hashtags como #TodasAsPalavras para leitores de tela."},
+ {m:6,f:"Regra 60-30-10",b:"60% cor base, 30% cor de apoio, 10% cor de destaque."},
+ {m:6,f:"6 princípios de design",b:"Hierarquia, contraste, alinhamento, proximidade, espaço negativo e repetição."},
+ {m:6,f:"Zona segura",b:"Área da tela vertical livre de elementos da interface onde o texto importante fica visível."},
+ {m:6,f:"Música e direitos autorais",b:"Use bibliotecas comerciais/licenciadas; 'sem fins lucrativos' não substitui autorização."},
+ {m:7,f:"Audiência × comunidade",b:"Audiência assiste; comunidade participa, conversa e pertence."},
+ {m:7,f:"Método ROTA",b:"Reconhecer, Oferecer solução, Transferir para o privado, Acompanhar."},
+ {m:7,f:"Tripé da marca pessoal",b:"Quem sou · Para quem · Qual transformação."},
+ {m:7,f:"Bio de 4 linhas",b:"1) Quem ajudo e o quê. 2) Como. 3) Prova. 4) CTA."},
+ {m:8,f:"Alcance × impressões",b:"Alcance: pessoas únicas. Impressões: total de exibições (inclui repetições)."},
+ {m:8,f:"ER por alcance",b:"(curtidas + comentários + salvamentos + compartilhamentos) ÷ alcance × 100."},
+ {m:8,f:"CTR · CPM · CPC · CPA · ROAS",b:"CTR = cliques ÷ impressões. CPM = gasto ÷ impressões × 1.000. CPC = gasto ÷ cliques. CPA = gasto ÷ vendas. ROAS = receita ÷ gasto."},
+ {m:8,f:"UTM",b:"Parâmetros no link (source, medium, campaign) para rastrear a origem do tráfego."},
+ {m:8,f:"Hipótese de teste",b:"Se eu [mudança], então [métrica] vai [direção] porque [razão]."},
+ {m:9,f:"Estrutura de campanha",b:"Campanha (objetivo) → Conjunto (público, orçamento) → Anúncio (criativo, texto, destino)."},
+ {m:9,f:"Os 6 objetivos (Meta)",b:"Reconhecimento, Tráfego, Engajamento, Cadastros (leads), Promoção do app, Vendas."},
+ {m:9,f:"Públicos",b:"Amplo, interesses, personalizado (remarketing) e semelhante (lookalike)."},
+ {m:9,f:"Criativo como targeting",b:"Com público amplo, a mensagem/criativo atrai as pessoas certas e afasta as erradas."},
+ {m:10,f:"Tipos de influenciador",b:"Nano (até ~10 mil), micro (~10–100 mil), macro (~100 mil–1 mi), mega/celebridade (1 mi+)."},
+ {m:10,f:"Escolha de criador",b:"Adequação de audiência > nº de seguidores. Cheque qualidade do engajamento, histórico e brand safety."},
+ {m:10,f:"Identificação de publicidade",b:"Publicidade deve ser identificável (CDC/CONAR) e usar as etiquetas das plataformas."},
+ {m:11,f:"Os 5 As da crise",b:"Pause, Apure, Assuma, Aja, Aprenda."},
+ {m:11,f:"Efeito Streisand",b:"Tentar suprimir uma informação acaba ampliando sua visibilidade."},
+ {m:11,f:"LGPD (em uma frase)",b:"Dados pessoais exigem base legal, finalidade clara, transparência e segurança."},
+ {m:11,f:"Segurança de contas",b:"2FA por app autenticador, gerenciador de senhas, permissões mínimas, offboarding e atenção a phishing."},
+ {m:12,f:"Fluxo humano no comando",b:"Pesquisar → briefar → gerar → curar → editar → verificar → publicar e medir."},
+ {m:12,f:"R-C-T-F-R (prompt)",b:"Papel, Contexto, Tarefa, Formato, Restrições."},
+ {m:12,f:"Riscos da IA",b:"Alucinação, voz genérica, direitos autorais, privacidade e rotulagem de conteúdo sintético."},
+ {m:13,f:"Preço-hora",b:"(Renda desejada + custos + impostos) ÷ horas realmente faturáveis."},
+ {m:13,f:"Estudo de caso de portfólio",b:"Contexto, objetivo, estratégia, execução, resultados e aprendizados."},
+ {m:14,f:"Growth loop",b:"Ciclo em que o resultado de uma volta alimenta a entrada da próxima."},
+ {m:14,f:"ICE",b:"Impacto, Confiança e Facilidade: priorização de experimentos."},
+ {m:14,f:"Incrementalidade",b:"O efeito causal real de uma ação; medido com grupos de controle ou testes geográficos."},
+ {m:14,f:"Terra alugada × própria",b:"Alugada: plataformas. Própria: e-mail, site, comunidade, app."}
+];
+var CARDS = RAW_CARDS.map(function(c,i){ c.id="c"+i; return c; });
+
+/* Médico de perfis: casos de diagnóstico */
+var CASES = [
+ {id:"d1",d:["200 mil impressões","CTR 0,5%","Retenção média 70%"],q:"Qual o diagnóstico mais provável?",o:["Embalagem fraca (capa/título/thumbnail): quem clica gosta, mas poucos clicam","O conteúdo é ruim","Está tudo ótimo","O algoritmo odeia o canal"],a:0,e:"Retenção alta indica conteúdo bom; CTR baixo, embalagem fraca. Teste novas capas e títulos."},
+ {id:"d2",d:["CTR 8%","Retenção média 12%","Comentários: 'não era isso'"],q:"O que provavelmente está acontecendo?",o:["Promessa do gancho não entregue (clickbait)","Capa fraca","Público pequeno","Falta de hashtags"],a:0,e:"Muito clique e abandono rápido: o gancho prometeu o que o conteúdo não entregou."},
+ {id:"d3",d:["Retenção 80%","Envios: 0,2 por 100","Alcance baixo"],q:"Qual a melhor hipótese e ação?",o:["Conteúdo agradável, mas pouco 'compartilhável': ajustar ângulo e CTA de envio","Comprar seguidores","Postar 10 vezes por dia","Apagar o perfil"],a:0,e:"Compartilhamentos/envios ajudam na distribuição para não seguidores."},
+ {id:"d4",d:["Curtidas altas","Cliques ≈ 0","Vendas ≈ 0"],q:"Qual o problema?",o:["Entretenimento sem ponte para a oferta (faltam conteúdo de meio/fundo e CTA)","Curtidas não existem","O pixel está desligado","A foto de perfil"],a:0,e:"Curtidas não pagam boletos: conecte conteúdo, funil e CTA."},
+ {id:"d5",d:["CTR 3%","Taxa de conversão do site 0,3%"],q:"Onde está o gargalo?",o:["Na página de destino, oferta ou preço","No gancho","Na hashtag","No horário"],a:0,e:"Há cliques; a conversão falha depois deles. Revise landing page, oferta, prova social e velocidade."},
+ {id:"d6",d:["+5.000 seguidores em uma semana","Engajamento caiu de 5% para 0,8%"],q:"O que investigar primeiro?",o:["Audiência fora do nicho ou seguidores de baixa qualidade","Se a internet está lenta","A cor do logo","O dia da semana"],a:0,e:"Crescimento rápido sem relevância dilui o engajamento e confunde o sistema de recomendação."},
+ {id:"d7",d:["CPM R$ 45","CTR 0,3%","Frequência 6"],q:"Qual a leitura?",o:["Público saturado e criativo cansado: renovar criativos e ampliar o público","Aumentar o orçamento já","Tudo ótimo","Trocar o logo"],a:0,e:"Frequência alta, CTR baixo e CPM caro: fadiga de criativo."},
+ {id:"d8",d:["Alcance caiu 60% de repente","Sem mudança de formato nem de rotina"],q:"Qual o primeiro passo?",o:["Checar o status da conta/violações e mudanças recentes da plataforma","Comprar seguidores","Postar 10 vezes por dia","Apagar o perfil"],a:0,e:"Verifique avisos, violações de diretrizes e mudanças antes de agir às cegas."}
+];
+
+/* =========================== ESTADO =========================== */
+var KEY = "smq-v1";
+function defaultState(){
+  return {done:{}, qRight:{}, fBox:{}, fMaster:{}, cases:{}, boss:{}, bestStreak:0, perfect:false, usedSim:false, usedCalc:false, usedHook:false, usedICE:false, usedPrice:false, tab:"mapa"};
+}
+function load(){
+  try{
+    var raw = localStorage.getItem(KEY);
+    if(raw){ var s = JSON.parse(raw); return Object.assign(defaultState(), s); }
+  }catch(e){}
+  return defaultState();
+}
+var state = load();
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+
+function totalXP(){
+  var x = 0;
+  MODULES.forEach(function(m){ if(state.done[m.id]) x += m.xp; });
+  x += Object.keys(state.qRight).length * 10;
+  x += Object.keys(state.fMaster).length * 5;
+  x += Object.keys(state.cases).length * 15;
+  return x;
+}
+function levelInfo(x){
+  var i = 0;
+  for(var k=0;k<LEVELS.length;k++){ if(x >= LEVELS[k].xp) i = k; }
+  var cur = LEVELS[i], next = LEVELS[i+1];
+  var pct = next ? Math.round((x-cur.xp)/(next.xp-cur.xp)*100) : 100;
+  return {i:i, cur:cur, next:next, pct:pct};
+}
+
+/* =========================== UTIL =========================== */
+function $(s,root){ return (root||document).querySelector(s); }
+function $$(s,root){ return Array.prototype.slice.call((root||document).querySelectorAll(s)); }
+function shuffle(a){ a = a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+var NF = new Intl.NumberFormat("pt-BR",{maximumFractionDigits:2});
+var BRL = new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"});
+function num(v){ var n = parseFloat(String(v).replace(",",".")); return isFinite(n) ? n : 0; }
+function div(a,b){ return b>0 ? a/b : null; }
+function fmtPct(v){ return v===null ? "—" : NF.format(v*100)+"%"; }
+function fmtNum(v){ return v===null ? "—" : NF.format(v); }
+function fmtBRL(v){ return v===null ? "—" : BRL.format(v); }
+
+function toast(msg){
+  var w = $("#toasts"), t = document.createElement("div");
+  t.className = "toast"; t.textContent = msg; w.appendChild(t);
+  setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 2400);
+}
+var lastLevel = levelInfo(totalXP()).i;
+function afterXP(gainMsg){
+  var x = totalXP(), li = levelInfo(x);
+  if(gainMsg) toast(gainMsg);
+  if(li.i > lastLevel){ toast("🎉 Subiu de nível: " + li.cur.n + "!"); }
+  lastLevel = li.i;
+  save(); renderHeader();
+}
+
+/* =========================== CABEÇALHO / ABAS =========================== */
+var TABS = [
+  {id:"mapa",t:"🗺️ Mapa"},{id:"quiz",t:"🧠 Quiz"},{id:"cards",t:"🃏 Flashcards"},
+  {id:"lab",t:"🔬 Laboratório"},{id:"badges",t:"🏅 Conquistas"}
+];
+function renderHeader(){
+  var x = totalXP(), li = levelInfo(x);
+  $("#lvlBadge").textContent = li.cur.n;
+  $("#xpBar").style.width = li.pct + "%";
+  $("#xpBarWrap").setAttribute("aria-valuenow", String(li.pct));
+  $("#xpNum").textContent = x + " XP" + (li.next ? " · próximo: " + li.next.xp : " · nível máximo");
+}
+function renderTabs(){
+  var nav = $("#tabs"); nav.innerHTML = "";
+  TABS.forEach(function(t){
+    var b = document.createElement("button");
+    b.className = "tab"; b.type = "button"; b.setAttribute("role","tab");
+    b.setAttribute("aria-selected", state.tab===t.id ? "true":"false");
+    b.textContent = t.t;
+    b.addEventListener("click", function(){ go(t.id); });
+    nav.appendChild(b);
+  });
+}
+function go(tab){
+  state.tab = tab; save(); renderTabs(); render();
+  window.scrollTo({top:0});
+}
+function render(){
+  var v = $("#view");
+  if(state.tab==="mapa") viewMap(v);
+  else if(state.tab==="quiz") viewQuiz(v);
+  else if(state.tab==="cards") viewCards(v);
+  else if(state.tab==="lab") viewLab(v);
+  else viewBadges(v);
+}
+
+/* =========================== MAPA =========================== */
+function viewMap(v){
+  var doneN = MODULES.filter(function(m){ return state.done[m.id]; }).length;
+  var html = '<h2>Sua jornada</h2>' +
+    '<p class="muted">Leia cada aula na pasta <code>modulos/</code>, faça o laboratório, enfrente o chefe (quiz) e marque como concluído. ' +
+    'Concluídos: <b>'+doneN+'/'+MODULES.length+'</b>.</p>';
+  [1,2,3,4,5].forEach(function(w){
+    html += '<div class="world"><h3>'+WORLDS[w]+'</h3></div><div class="grid cols2">';
+    MODULES.filter(function(m){ return m.w===w; }).forEach(function(m){
+      var done = !!state.done[m.id];
+      var best = state.boss[m.id];
+      html += '<div class="card mod'+(done?' done':'')+'">' +
+        '<div class="head"><span class="num">'+m.id+'</span><div><div class="title">'+esc(m.t)+'</div>' +
+        '<span class="pill'+(done?' good':'')+'">'+(done?'✔ concluído':'+'+m.xp+' XP')+'</span> ' +
+        (best!==undefined ? '<span class="pill warn">chefe: '+best+'%</span>' : '') + '</div></div>' +
+        '<div class="row">' +
+          '<a class="btn small" href="../modulos/'+m.f+'" target="_blank" rel="noopener">📖 Abrir aula</a>' +
+          '<button class="btn small" type="button" data-boss="'+m.id+'">⚔️ Chefe</button>' +
+          '<label class="chk"><input type="checkbox" data-done="'+m.id+'"'+(done?' checked':'')+'> Concluí</label>' +
+        '</div></div>';
+    });
+    html += '</div>';
+  });
+  html += '<p class="notice" style="margin-top:20px">💾 Seu progresso fica salvo <b>neste navegador</b>. O registro permanente está no arquivo <code>progresso.md</code>.</p>';
+  v.innerHTML = html;
+  $$("[data-boss]",v).forEach(function(b){ b.addEventListener("click", function(){ startQuiz(parseInt(b.getAttribute("data-boss"),10)); go("quiz"); }); });
+  $$("[data-done]",v).forEach(function(c){
+    c.addEventListener("change", function(){
+      var id = parseInt(c.getAttribute("data-done"),10);
+      var m = MODULES.filter(function(x){ return x.id===id; })[0];
+      if(c.checked){ state.done[id]=true; afterXP("+"+m.xp+" XP · módulo "+id+" concluído!"); }
+      else { delete state.done[id]; afterXP(); }
+      viewMap(v);
+    });
+  });
+}
+
+/* =========================== QUIZ =========================== */
+var quiz = null;
+function startQuiz(scope){
+  var pool = QUESTIONS.filter(function(q){ return scope==="all" || q.m===scope; });
+  pool = shuffle(pool);
+  if(scope==="all") pool = pool.slice(0,10);
+  quiz = {scope:scope, pool:pool, i:0, right:0, streak:0, answered:false, opts:null, done:false};
+}
+function viewQuiz(v){
+  if(!quiz){
+    var html = '<h2>🧠 Quiz</h2><p class="muted">Cada pergunta respondida corretamente pela primeira vez vale <b>+10 XP</b>. ' +
+      'No chefe de um módulo, acertar 70% ou mais conta como aprovação.</p>' +
+      '<div class="card"><h3>Mix geral (10 perguntas)</h3><button class="btn primary" type="button" id="qAll">▶ Começar</button></div>' +
+      '<h3 style="margin-top:18px">Chefes por módulo</h3><div class="grid cols3">';
+    MODULES.forEach(function(m){
+      var n = QUESTIONS.filter(function(q){ return q.m===m.id; }).length;
+      html += '<button class="card btn" type="button" data-q="'+m.id+'" style="flex-direction:column;align-items:flex-start;text-align:left">' +
+        '<b>Módulo '+m.id+'</b><span class="muted">'+esc(m.t)+'</span><span class="pill">'+n+' perguntas</span></button>';
+    });
+    html += '</div>';
+    v.innerHTML = html;
+    $("#qAll",v).addEventListener("click", function(){ startQuiz("all"); viewQuiz(v); });
+    $$("[data-q]",v).forEach(function(b){ b.addEventListener("click", function(){ startQuiz(parseInt(b.getAttribute("data-q"),10)); viewQuiz(v); }); });
+    return;
+  }
+  if(quiz.done){ return viewQuizEnd(v); }
+  var q = quiz.pool[quiz.i];
+  if(!quiz.opts){ quiz.opts = shuffle(q.o.map(function(t,i){ return {t:t,i:i}; })); }
+  var h = '<div class="row" style="justify-content:space-between"><span class="pill">Módulo '+q.m+'</span>' +
+    '<span class="muted">Pergunta '+(quiz.i+1)+' de '+quiz.pool.length+' · 🔥 sequência '+quiz.streak+'</span></div>' +
+    '<div class="card" style="margin-top:10px"><h3 id="qq">'+esc(q.q)+'</h3><div role="group" aria-labelledby="qq">';
+  quiz.opts.forEach(function(o,idx){
+    h += '<button type="button" class="opt" data-o="'+idx+'">'+esc(o.t)+'</button>';
+  });
+  h += '</div><div id="fb" aria-live="polite"></div><div class="row" style="margin-top:12px">' +
+    '<button class="btn primary" type="button" id="qNext" style="display:none">Próxima ▶</button>' +
+    '<button class="btn ghost" type="button" id="qQuit">Sair do quiz</button></div></div>';
+  v.innerHTML = h;
+  $$(".opt",v).forEach(function(b){ b.addEventListener("click", function(){ answer(parseInt(b.getAttribute("data-o"),10), v); }); });
+  $("#qQuit",v).addEventListener("click", function(){ quiz=null; viewQuiz(v); });
+  $("#qNext",v).addEventListener("click", function(){
+    quiz.i++; quiz.opts=null; quiz.answered=false; quiz.chosen=null;
+    if(quiz.i >= quiz.pool.length){ quiz.done = true; }
+    viewQuiz(v);
+  });
+  if(quiz.answered){ paintAnswered(v); }   /* volta de outra aba: restaura o estado da resposta */
+}
+function paintAnswered(v){
+  var q = quiz.pool[quiz.i], idx = quiz.chosen;
+  var right = quiz.opts[idx].i === q.a;
+  $$(".opt",v).forEach(function(b,k){
+    b.disabled = true;
+    if(quiz.opts[k].i === q.a) b.classList.add("right");
+    else if(k===idx) b.classList.add("wrong");
+  });
+  var fb = $("#fb",v);
+  fb.className = "fb " + (right ? "good" : "bad");
+  fb.innerHTML = '<b>'+(right?'✅ Certo!':'❌ Quase!')+'</b> '+esc(q.e);
+  var nx = $("#qNext",v);
+  nx.style.display = "inline-flex";
+  nx.textContent = (quiz.i+1 >= quiz.pool.length) ? "Ver resultado ▶" : "Próxima ▶";
+}
+function answer(idx, v){
+  if(quiz.answered) return;
+  quiz.answered = true;
+  quiz.chosen = idx;
+  var q = quiz.pool[quiz.i], chosen = quiz.opts[idx];
+  var right = chosen.i === q.a;
+  paintAnswered(v);
+  var gain = "";
+  if(right){
+    quiz.right++; quiz.streak++;
+    if(quiz.streak > state.bestStreak) state.bestStreak = quiz.streak;
+    if(!state.qRight[q.id]){ state.qRight[q.id]=true; gain = "+10 XP"; }
+  } else { quiz.streak = 0; }
+  afterXP(gain);
+  $("#qNext",v).focus();
+}
+function viewQuizEnd(v){
+  var n = quiz.pool.length, pct = Math.round(quiz.right/n*100);
+  var msg = pct===100 ? "Perfeito! 🏆" : pct>=70 ? "Aprovado(a)! ✅" : "Quase lá — revise a aula e tente de novo. 💪";
+  if(pct===100 && n>=5) state.perfect = true;
+  if(typeof quiz.scope==="number"){
+    if(state.boss[quiz.scope]===undefined || pct > state.boss[quiz.scope]) state.boss[quiz.scope] = pct;
+  }
+  save();
+  v.innerHTML = '<div class="card"><h2>Resultado</h2><p style="font-size:1.3rem"><b>'+quiz.right+' / '+n+'</b> ('+pct+'%)</p><p>'+msg+'</p>' +
+    (typeof quiz.scope==="number" && pct>=70 ? '<p class="notice">Você passou no chefe do módulo '+quiz.scope+'. Falta só fazer o laboratório e marcar como concluído no Mapa.</p>' : '') +
+    '<div class="row"><button class="btn primary" type="button" id="again">Jogar de novo</button><button class="btn" type="button" id="menu">Menu do quiz</button><button class="btn" type="button" id="toMap">Ir ao mapa</button></div></div>';
+  var scope = quiz.scope;
+  $("#again",v).addEventListener("click", function(){ startQuiz(scope); viewQuiz(v); });
+  $("#menu",v).addEventListener("click", function(){ quiz=null; viewQuiz(v); });
+  $("#toMap",v).addEventListener("click", function(){ quiz=null; go("mapa"); });
+  renderHeader();
+}
+
+/* =========================== FLASHCARDS =========================== */
+var deck = null;
+function startDeck(scope){
+  var cards = CARDS.filter(function(c){ return scope==="all" || c.m===scope; });
+  cards = shuffle(cards).sort(function(a,b){ return (state.fBox[a.id]||1) - (state.fBox[b.id]||1); }).slice(0,10);
+  deck = {scope:scope, cards:cards, i:0, flipped:false, known:0};
+}
+function boxCounts(){
+  var c = {1:0,2:0,3:0};
+  CARDS.forEach(function(k){ c[state.fBox[k.id]||1]++; });
+  return c;
+}
+function viewCards(v){
+  var bc = boxCounts();
+  var stats = '<div class="stat"><span class="pill">Caixa 1 (novas/difíceis): '+bc[1]+'</span><span class="pill warn">Caixa 2 (aprendendo): '+bc[2]+'</span><span class="pill good">Caixa 3 (dominadas): '+bc[3]+'</span></div>';
+  if(!deck){
+    var h = '<h2>🃏 Flashcards</h2><p class="muted">Repetição espaçada simples (3 caixas). Acertou: a carta sobe de caixa. Errou: volta para a caixa 1. ' +
+      'Cada carta que chega à caixa 3 pela primeira vez vale <b>+5 XP</b>. As mais difíceis aparecem primeiro.</p>' + stats +
+      '<div class="card" style="margin-top:12px"><h3>Sessão rápida (10 cartas)</h3><button class="btn primary" type="button" id="dAll">▶ Começar</button></div>' +
+      '<h3 style="margin-top:18px">Por módulo</h3><div class="grid cols3">';
+    var mods = {};
+    CARDS.forEach(function(c){ mods[c.m]=(mods[c.m]||0)+1; });
+    Object.keys(mods).forEach(function(k){
+      var m = MODULES.filter(function(x){ return x.id===parseInt(k,10); })[0];
+      h += '<button class="card btn" type="button" data-d="'+k+'" style="flex-direction:column;align-items:flex-start;text-align:left"><b>Módulo '+k+'</b><span class="muted">'+esc(m.t)+'</span><span class="pill">'+mods[k]+' cartas</span></button>';
+    });
+    h += '</div>';
+    v.innerHTML = h;
+    $("#dAll",v).addEventListener("click", function(){ startDeck("all"); viewCards(v); });
+    $$("[data-d]",v).forEach(function(b){ b.addEventListener("click", function(){ startDeck(parseInt(b.getAttribute("data-d"),10)); viewCards(v); }); });
+    return;
+  }
+  if(deck.i >= deck.cards.length){
+    v.innerHTML = '<div class="card"><h2>Sessão concluída 🎉</h2><p>Você marcou <b>'+deck.known+'</b> de '+deck.cards.length+' como "Sei!".</p>'+stats+
+      '<div class="row" style="margin-top:12px"><button class="btn primary" type="button" id="dAgain">Outra sessão</button><button class="btn" type="button" id="dMenu">Menu</button></div></div>';
+    var sc = deck.scope;
+    $("#dAgain",v).addEventListener("click", function(){ startDeck(sc); viewCards(v); });
+    $("#dMenu",v).addEventListener("click", function(){ deck=null; viewCards(v); });
+    return;
+  }
+  var c = deck.cards[deck.i];
+  var box = state.fBox[c.id]||1;
+  var body = '<div class="row" style="justify-content:space-between"><span class="pill">Módulo '+c.m+'</span><span class="muted">Carta '+(deck.i+1)+' de '+deck.cards.length+' · caixa '+box+'</span></div>' +
+    '<div class="fcard" id="fc" role="button" tabindex="0" aria-label="Virar carta" style="margin-top:10px"><div><span class="tag">'+(deck.flipped?'RESPOSTA':'PERGUNTA · clique para virar')+'</span>' +
+    '<b>'+esc(deck.flipped ? c.b : c.f)+'</b></div></div>';
+  if(deck.flipped){
+    body += '<div class="row" style="margin-top:12px;justify-content:center">' +
+      '<button class="btn" type="button" data-r="0">😅 Errei</button><button class="btn" type="button" data-r="1">🤔 Quase</button><button class="btn primary" type="button" data-r="2">😎 Sei!</button></div>';
+  } else {
+    body += '<div class="row" style="margin-top:12px;justify-content:center"><button class="btn primary" type="button" id="flip">Virar carta</button></div>';
+  }
+  body += '<div class="row" style="margin-top:12px;justify-content:center"><button class="btn ghost small" type="button" id="dQuit">Sair</button></div>';
+  v.innerHTML = body;
+  function flip(){ deck.flipped = true; viewCards(v); }
+  var fc = $("#fc",v);
+  if(!deck.flipped){
+    fc.addEventListener("click", flip);
+    fc.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); flip(); } });
+    $("#flip",v).addEventListener("click", flip);
+  }
+  $$("[data-r]",v).forEach(function(b){
+    b.addEventListener("click", function(){
+      var r = parseInt(b.getAttribute("data-r"),10), cur = state.fBox[c.id]||1, gain = "";
+      if(r===0) state.fBox[c.id] = 1;
+      else if(r===2){
+        state.fBox[c.id] = Math.min(3, cur+1); deck.known++;
+        if(state.fBox[c.id]===3 && !state.fMaster[c.id]){ state.fMaster[c.id]=true; gain="+5 XP"; }
+      }
+      deck.i++; deck.flipped=false;
+      afterXP(gain); viewCards(v);
+    });
+  });
+  $("#dQuit",v).addEventListener("click", function(){ deck=null; viewCards(v); });
+}
+
+/* =========================== LABORATÓRIO =========================== */
+var labTab = "calc";
+var caseIdx = 0, caseAnswered = false;
+var iceRows = [];
+function viewLab(v){
+  var tools = [["calc","🧮 Métricas"],["sim","🎛️ Simulador"],["doc","🩺 Médico de perfis"],["hook","🪝 Hook Lab"],["ice","📊 ICE"],["price","💰 Preço-hora"]];
+  var h = '<h2>🔬 Laboratório</h2><div class="sublabs" role="group" aria-label="Ferramentas">';
+  tools.forEach(function(t){ h += '<button type="button" data-lab="'+t[0]+'" aria-pressed="'+(labTab===t[0])+'">'+t[1]+'</button>'; });
+  h += '</div><div id="labBody"></div>';
+  v.innerHTML = h;
+  $$("[data-lab]",v).forEach(function(b){ b.addEventListener("click", function(){ labTab = b.getAttribute("data-lab"); viewLab(v); }); });
+  var body = $("#labBody",v);
+  if(labTab==="calc") labCalc(body);
+  else if(labTab==="sim") labSim(body);
+  else if(labTab==="doc") labDoc(body);
+  else if(labTab==="hook") labHook(body);
+  else if(labTab==="ice") labICE(body);
+  else labPrice(body);
+}
+
+/* ---- Calculadora de métricas ---- */
+function labCalc(b){
+  var F = [
+    ["seg","Seguidores",8000],["alc","Alcance (pessoas únicas)",5000],["imp","Impressões",20000],
+    ["cur","Curtidas",120],["com","Comentários",15],["sal","Salvamentos",40],["shr","Compartilhamentos",25],
+    ["cli","Cliques no link",300],["gas","Gasto em anúncios (R$)",200],["vnd","Vendas/resultados",10],
+    ["rec","Receita (R$)",1000],["dur","Duração do vídeo (s)",30],["avg","Tempo médio assistido (s)",12]
+  ];
+  var h = '<div class="card"><p class="muted">Preencha (ou use os valores de exemplo) e veja as métricas. Os campos vazios ou zerados viram “—”.</p><div class="grid cols3">';
+  F.forEach(function(f){ h += '<div class="field"><label for="f_'+f[0]+'">'+f[1]+'</label><input id="f_'+f[0]+'" type="number" inputmode="decimal" min="0" step="any" value="'+f[2]+'"></div>'; });
+  h += '</div></div><div class="grid cols3" id="calcOut" style="margin-top:12px"></div>';
+  b.innerHTML = h;
+  function calc(){
+    var g = function(k){ return num($("#f_"+k).value); };
+    var inter = g("cur")+g("com")+g("sal")+g("shr");
+    var items = [
+      ["Interações (soma)", fmtNum(inter), "curtidas + comentários + salvamentos + compartilhamentos"],
+      ["ER por alcance", fmtPct(div(inter,g("alc"))), "interações ÷ alcance"],
+      ["ER por seguidores", fmtPct(div(inter,g("seg"))), "interações ÷ seguidores"],
+      ["CTR", fmtPct(div(g("cli"),g("imp"))), "cliques ÷ impressões"],
+      ["Frequência", fmtNum(div(g("imp"),g("alc"))), "impressões ÷ alcance"],
+      ["CPM", fmtBRL(div(g("gas")*1000,g("imp"))), "gasto ÷ impressões × 1.000"],
+      ["CPC", fmtBRL(div(g("gas"),g("cli"))), "gasto ÷ cliques"],
+      ["CPA", fmtBRL(div(g("gas"),g("vnd"))), "gasto ÷ vendas"],
+      ["ROAS", div(g("rec"),g("gas"))===null ? "—" : fmtNum(div(g("rec"),g("gas")))+"×", "receita ÷ gasto (não é lucro!)"],
+      ["Retenção média", fmtPct(div(g("avg"),g("dur"))), "tempo médio ÷ duração"]
+    ];
+    $("#calcOut").innerHTML = items.map(function(i){ return '<div class="res"><div><small>'+i[0]+'</small><b>'+i[1]+'</b></div><small style="text-align:right;max-width:55%">'+i[2]+'</small></div>'; }).join("");
+  }
+  $$("input",b).forEach(function(i){ i.addEventListener("input", function(){ calc(); if(!state.usedCalc){ state.usedCalc=true; save(); } }); });
+  calc();
+}
+
+/* ---- Simulador didático de algoritmo ---- */
+function labSim(b){
+  var S = [
+    ["ret","Retenção (% que assiste até o fim)",65,0,100,1],
+    ["snd","Envios para amigos (por 100 pessoas)",9,0,30,1],
+    ["sav","Salvamentos (por 100)",4,0,30,1],
+    ["lik","Curtidas (por 100)",8,0,40,1],
+    ["neg","'Não tenho interesse' + denúncias (por 100)",1,0,20,1]
+  ];
+  var h = '<div class="notice">⚠️ <b>Modelo didático.</b> Plataformas reais usam centenas de sinais e pesos que não são públicos. Este simulador só ilustra a lógica: reação boa na 1ª onda → ampliação.</div>' +
+    '<div class="card" style="margin-top:12px"><div class="grid cols2">';
+  S.forEach(function(s){ h += '<div class="field"><label for="s_'+s[0]+'">'+s[1]+': <b id="o_'+s[0]+'">'+s[2]+'</b></label><input id="s_'+s[0]+'" type="range" min="'+s[3]+'" max="'+s[4]+'" step="'+s[5]+'" value="'+s[2]+'"></div>'; });
+  h += '</div></div><div class="card" style="margin-top:12px"><h3>Pontuação didática: <span id="score">0</span>/100</h3><div id="waves"></div><p id="simMsg" class="muted"></p></div>';
+  b.innerHTML = h;
+  function sim(){
+    var g = function(k){ return num($("#s_"+k).value); };
+    S.forEach(function(s){ $("#o_"+s[0]).textContent = g(s[0]); });
+    var score = 0.45*g("ret") + 2.5*g("snd") + 1.2*g("sav") + 0.4*g("lik") - 3*g("neg");
+    score = Math.max(0, Math.min(100, Math.round(score)));
+    $("#score").textContent = score;
+    var audiences = [300, 3000, 30000, 300000], need = [0, 35, 55, 75], reached = 1;
+    for(var i=1;i<4;i++){ if(score >= need[i]) reached = i+1; else break; }
+    var html = "";
+    for(var k=0;k<4;k++){
+      var on = k < reached;
+      var pct = Math.round(Math.log10(audiences[k]) / Math.log10(300000) * 100);
+      html += '<div class="wave"><span class="w">Onda '+(k+1)+'</span><span class="b"><i style="width:'+(on?pct:0)+'%"></i></span><span class="n">'+(on?NF.format(audiences[k]):"parou antes")+'</span></div>';
+    }
+    $("#waves").innerHTML = html;
+    var msgs = ["Pouca reação: o conteúdo não passa da 1ª onda. Revise gancho e valor.","Reação razoável: ampliou um pouco. Tente aumentar retenção e envios.","Boa reação: o conteúdo expande para públicos maiores.","Reação excelente: distribuição ampla — retenção e compartilhamentos altos!"];
+    $("#simMsg").textContent = msgs[reached-1];
+  }
+  $$("input",b).forEach(function(i){ i.addEventListener("input", function(){ sim(); if(!state.usedSim){ state.usedSim=true; save(); renderHeader(); } }); });
+  sim();
+}
+
+/* ---- Médico de perfis ---- */
+function labDoc(b){
+  var c = CASES[caseIdx % CASES.length];
+  var opts = shuffle(c.o.map(function(t,i){ return {t:t,i:i}; }));
+  var h = '<div class="card"><div class="row" style="justify-content:space-between"><span class="pill">Caso '+((caseIdx%CASES.length)+1)+' de '+CASES.length+'</span><span class="muted">Acerte pela 1ª vez: +15 XP</span></div>' +
+    '<h3 style="margin-top:10px">Sintomas</h3><ul>'+c.d.map(function(d){ return '<li>'+esc(d)+'</li>'; }).join("")+'</ul>' +
+    '<h3>'+esc(c.q)+'</h3><div id="dopts">';
+  opts.forEach(function(o,idx){ h += '<button type="button" class="opt" data-k="'+idx+'">'+esc(o.t)+'</button>'; });
+  h += '</div><div id="dfb" aria-live="polite"></div><div class="row" style="margin-top:12px"><button class="btn primary" type="button" id="dnext" style="display:none">Próximo caso ▶</button></div></div>';
+  b.innerHTML = h;
+  caseAnswered = false;
+  $$(".opt",b).forEach(function(btn){
+    btn.addEventListener("click", function(){
+      if(caseAnswered) return; caseAnswered = true;
+      var k = parseInt(btn.getAttribute("data-k"),10), right = opts[k].i === c.a, gain = "";
+      $$(".opt",b).forEach(function(x,j){ x.disabled = true; if(opts[j].i===c.a) x.classList.add("right"); else if(j===k) x.classList.add("wrong"); });
+      var fb = $("#dfb",b); fb.className = "fb "+(right?"good":"bad"); fb.innerHTML = '<b>'+(right?'✅ Diagnóstico certo!':'❌ Não foi desta vez.')+'</b> '+esc(c.e);
+      if(right && !state.cases[c.id]){ state.cases[c.id]=true; gain="+15 XP"; }
+      afterXP(gain);
+      $("#dnext",b).style.display = "inline-flex";
+    });
+  });
+  $("#dnext",b).addEventListener("click", function(){ caseIdx++; labDoc(b); });
+}
+
+/* ---- Hook Lab ---- */
+function labHook(b){
+  b.innerHTML = '<div class="card"><p class="muted">Preencha os 3 campos e gere 7 ganchos-modelo (um de cada tipo). Depois <b>ajuste o texto</b>: o objetivo é ter uma base para pensar, não uma frase pronta.</p>' +
+    '<div class="grid cols3"><div class="field"><label for="h_t">Tema</label><input id="h_t" type="text" value="organizar finanças"></div>' +
+    '<div class="field"><label for="h_p">Público</label><input id="h_p" type="text" value="quem trabalha por conta própria"></div>' +
+    '<div class="field"><label for="h_r">Resultado desejado</label><input id="h_r" type="text" value="sobrar dinheiro no fim do mês"></div></div>' +
+    '<div class="row" style="margin-top:12px"><button class="btn primary" type="button" id="hGen">✨ Gerar ganchos</button></div></div>' +
+    '<div id="hOut" style="margin-top:12px" class="grid"></div>' +
+    '<div class="card" style="margin-top:12px"><h3>Checklist do bom gancho</h3><div class="grid cols2">' +
+    ['É claro sobre o tema em 1 segundo?','Tem contraste ou tensão (um "mas", algo inesperado)?','É específico (número, situação, resultado)?','O vídeo entrega o que o gancho promete?'].map(function(t,i){ return '<label class="chk"><input type="checkbox" class="hchk"> '+t+'</label>'; }).join("") +
+    '</div><p class="muted" id="hScore"></p></div>';
+  function gen(){
+    var t = $("#h_t").value.trim() || "seu tema", p = $("#h_p").value.trim() || "seu público", r = $("#h_r").value.trim() || "o resultado";
+    var list = [
+      ["Curiosidade","O que ninguém conta para "+p+" sobre "+t],
+      ["Contraintuitivo","Pare de insistir no jeito tradicional de "+t+" se você quer "+r],
+      ["Dor","Cansado de não conseguir "+r+"? Isto resolve (em 30 segundos)"],
+      ["Promessa","Como "+r+" sem complicação: passo a passo de "+t],
+      ["Lista","3 erros que quase todo mundo comete em "+t],
+      ["História","Eu estava prestes a desistir de "+t+" quando descobri isto"],
+      ["Prova","Depois de testar "+t+" por 30 dias, descobri como "+r]
+    ];
+    var out = $("#hOut"); out.innerHTML = "";
+    list.forEach(function(it){
+      var d = document.createElement("div"); d.className = "card";
+      var s = document.createElement("span"); s.className = "pill"; s.textContent = it[0];
+      var p2 = document.createElement("p"); p2.style.margin = "8px 0 0"; p2.textContent = it[1];
+      d.appendChild(s); d.appendChild(p2); out.appendChild(d);
+    });
+    if(!state.usedHook){ state.usedHook = true; save(); }
+  }
+  $("#hGen").addEventListener("click", gen);
+  function chk(){ var n = $$(".hchk",b).filter(function(c){ return c.checked; }).length; $("#hScore").textContent = n+"/4 critérios atendidos" + (n===4?" — gancho forte! 💪":""); }
+  $$(".hchk",b).forEach(function(c){ c.addEventListener("change", chk); }); chk();
+  gen();
+}
+
+/* ---- ICE ---- */
+function labICE(b){
+  var h = '<div class="card"><p class="muted">Pontue cada ideia de teste de 1 a 10 em <b>I</b>mpacto, <b>C</b>onfiança e <b>E</b>ase (facilidade de executar). A média define a ordem.</p>' +
+    '<div class="grid cols2"><div class="field"><label for="i_n">Ideia de experimento</label><input id="i_n" type="text" placeholder="Ex.: testar 3 ganchos diferentes"></div><div class="grid" style="grid-template-columns:repeat(3,1fr);gap:8px">' +
+    '<div class="field"><label for="i_i">Impacto</label><input id="i_i" type="number" min="1" max="10" value="5"></div>' +
+    '<div class="field"><label for="i_c">Confiança</label><input id="i_c" type="number" min="1" max="10" value="5"></div>' +
+    '<div class="field"><label for="i_e">Facilidade</label><input id="i_e" type="number" min="1" max="10" value="5"></div></div></div>' +
+    '<div class="row" style="margin-top:12px"><button class="btn primary" type="button" id="iAdd">+ Adicionar</button><button class="btn" type="button" id="iClr">Limpar lista</button></div></div>' +
+    '<div class="card" style="margin-top:12px"><table class="t" id="iTbl"><thead><tr><th>#</th><th>Ideia</th><th>I</th><th>C</th><th>E</th><th>ICE</th><th></th></tr></thead><tbody></tbody></table></div>';
+  b.innerHTML = h;
+  function clamp(x){ x = Math.round(num(x)); return Math.max(1, Math.min(10, x||1)); }
+  function draw(){
+    var rows = iceRows.slice().sort(function(a,b2){ return b2.s - a.s; });
+    $("#iTbl tbody").innerHTML = rows.length ? rows.map(function(r,i){
+      return '<tr><td>'+(i+1)+'</td><td>'+esc(r.n)+'</td><td>'+r.i+'</td><td>'+r.c+'</td><td>'+r.e+'</td><td><b>'+NF.format(r.s)+'</b></td><td><button class="btn small ghost" type="button" data-rm="'+r.id+'" aria-label="Remover">✕</button></td></tr>';
+    }).join("") : '<tr><td colspan="7" class="muted">Adicione ideias para ver a priorização.</td></tr>';
+    $$("[data-rm]",b).forEach(function(x){ x.addEventListener("click", function(){ var id = x.getAttribute("data-rm"); iceRows = iceRows.filter(function(r){ return String(r.id)!==id; }); draw(); }); });
+  }
+  $("#iAdd").addEventListener("click", function(){
+    var n = $("#i_n").value.trim(); if(!n){ toast("Escreva a ideia primeiro"); return; }
+    var i = clamp($("#i_i").value), c = clamp($("#i_c").value), e = clamp($("#i_e").value);
+    iceRows.push({id:Date.now()+Math.random(), n:n, i:i, c:c, e:e, s:Math.round((i+c+e)/3*10)/10});
+    $("#i_n").value = ""; draw();
+    if(!state.usedICE){ state.usedICE = true; save(); }
+  });
+  $("#iClr").addEventListener("click", function(){ iceRows = []; draw(); });
+  draw();
+}
+
+/* ---- Preço-hora ---- */
+function labPrice(b){
+  b.innerHTML = '<div class="card"><p class="muted">Fórmula: (renda desejada + custos e impostos) ÷ horas realmente faturáveis. Valores só de exemplo; consulte um(a) contador(a) para impostos.</p>' +
+    '<div class="grid cols3"><div class="field"><label for="p_r">Renda líquida desejada/mês (R$)</label><input id="p_r" type="number" min="0" value="4000"></div>' +
+    '<div class="field"><label for="p_c">Custos + impostos/mês (R$)</label><input id="p_c" type="number" min="0" value="800"></div>' +
+    '<div class="field"><label for="p_h">Horas faturáveis/mês</label><input id="p_h" type="number" min="1" value="60"></div></div></div>' +
+    '<div class="grid cols2" style="margin-top:12px" id="pOut"></div><p class="notice" style="margin-top:12px" id="pWarn" hidden></p>';
+  function calc(){
+    var r = num($("#p_r").value), c = num($("#p_c").value), h = num($("#p_h").value);
+    var ph = h>0 ? (r+c)/h : null;
+    $("#pOut").innerHTML = '<div class="res"><div><small>Preço-hora mínimo</small><b>'+fmtBRL(ph)+'</b></div></div>' +
+      '<div class="res"><div><small>Pacote de 20 h/mês</small><b>'+fmtBRL(ph===null?null:ph*20)+'</b></div></div>';
+    var w = $("#pWarn");
+    if(h > 110){ w.hidden = false; w.textContent = "Atenção: é pouco provável faturar mais de ~110 horas por mês, pois prospecção, reuniões e administração também consomem tempo."; }
+    else w.hidden = true;
+    if(!state.usedPrice){ state.usedPrice = true; save(); }
+  }
+  $$("input",b).forEach(function(i){ i.addEventListener("input", calc); });
+  calc();
+}
+
+/* =========================== CONQUISTAS =========================== */
+var BADGES = [
+  {ic:"🧳",t:"Primeiro passo",d:"Conclua 1 módulo",ok:function(){ return Object.keys(state.done).length>=1; }},
+  {ic:"🧭",t:"Explorador",d:"Chegue a 150 XP",ok:function(){ return totalXP()>=150; }},
+  {ic:"🔥",t:"Sequência de 5",d:"Acerte 5 seguidas no quiz",ok:function(){ return state.bestStreak>=5; }},
+  {ic:"💯",t:"Perfeito",d:"100% em um quiz (5+ perguntas)",ok:function(){ return state.perfect; }},
+  {ic:"⚔️",t:"Caçador de chefes",d:"Aprove em 3 chefes (≥ 70%)",ok:function(){ return Object.keys(state.boss).filter(function(k){ return state.boss[k]>=70; }).length>=3; }},
+  {ic:"🐘",t:"Memória de elefante",d:"10 flashcards na caixa 3",ok:function(){ return Object.keys(state.fMaster).length>=10; }},
+  {ic:"🧮",t:"Analista",d:"Use a calculadora de métricas",ok:function(){ return state.usedCalc; }},
+  {ic:"🎛️",t:"Cientista de feed",d:"Brinque com o simulador",ok:function(){ return state.usedSim; }},
+  {ic:"🩺",t:"Doutor(a) de perfis",d:"Acerte 5 diagnósticos",ok:function(){ return Object.keys(state.cases).length>=5; }},
+  {ic:"🪝",t:"Gancheiro(a)",d:"Gere ganchos no Hook Lab",ok:function(){ return state.usedHook; }},
+  {ic:"📊",t:"Priorizador(a)",d:"Use a matriz ICE",ok:function(){ return state.usedICE; }},
+  {ic:"💰",t:"Precificador(a)",d:"Calcule seu preço-hora",ok:function(){ return state.usedPrice; }},
+  {ic:"🛡️",t:"Mestre",d:"Chegue a 1.800 XP",ok:function(){ return totalXP()>=1800; }},
+  {ic:"🏆",t:"Projeto final",d:"Conclua o módulo 15",ok:function(){ return !!state.done[15]; }},
+  {ic:"👑",t:"Lenda",d:"Chegue a 2.400 XP",ok:function(){ return totalXP()>=2400; }}
+];
+function viewBadges(v){
+  var on = BADGES.filter(function(b){ return b.ok(); }).length;
+  var h = '<h2>🏅 Conquistas</h2><p class="muted">'+on+' de '+BADGES.length+' desbloqueadas.</p><div class="badges">';
+  BADGES.forEach(function(b){
+    var ok = b.ok();
+    h += '<div class="card badge'+(ok?' on':'')+'"><span class="ic" aria-hidden="true">'+b.ic+'</span><div><b>'+esc(b.t)+'</b><div class="muted" style="font-size:.9rem">'+esc(b.d)+'</div><span class="pill'+(ok?' good':'')+'">'+(ok?'desbloqueada':'bloqueada')+'</span></div></div>';
+  });
+  h += '</div>';
+  v.innerHTML = h;
+}
+
+/* =========================== INICIAR =========================== */
+(function init(){
+  var th = null;
+  try{ th = localStorage.getItem("smq-theme"); }catch(e){}
+  if(th==="dark"||th==="light") document.documentElement.setAttribute("data-theme", th);
+  $("#themeBtn").addEventListener("click", function(){
+    var cur = document.documentElement.getAttribute("data-theme");
+    var isDark = cur ? cur==="dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var next = isDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try{ localStorage.setItem("smq-theme", next); }catch(e){}
+  });
+  $("#resetBtn").addEventListener("click", function(){
+    if(window.confirm("Zerar todo o progresso deste navegador? Isso não afeta o arquivo progresso.md.")){
+      state = defaultState(); save(); quiz=null; deck=null; lastLevel=0; renderHeader(); renderTabs(); render(); toast("Progresso zerado");
+    }
+  });
+  renderHeader(); renderTabs(); render();
+})();
+</script>
+</body>
+</html>

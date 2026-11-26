@@ -1,6 +1,6 @@
 # 📊 Módulo 10 — Influenciadores & social commerce
 
-> **Mundo 4 · Dados & Crescimento** · ⏱ ~2h · 🎯 Meta: escolher, contratar e medir parcerias com criadores — e entender como vender dentro das redes
+> **Mundo 4 · Dados & Crescimento** · ⏱ ~2h · 🎯 Meta: escolher, contratar e medir parcerias com criadores — e entender como vender dentro das redes  
 > **Pré-requisitos:** Módulos 01–09 · **XP:** 100
 
 ---
@@ -42,7 +42,7 @@
 
 ## 2️⃣ Por que (e quando) usar influenciadores
 
-**Vantagens:** confiança emprestada ("prova social"), acesso a **audiências de nicho**, conteúdo criativo com linguagem nativa, material para **anúncios** (criativos).
+**Vantagens:** confiança emprestada ("prova social"), acesso a **audiências de nicho**, conteúdo criativo com linguagem nativa, material para **anúncios** (criativos).  
 **Riscos:** desalinhamento de valores, polêmicas do criador, **seguidores falsos**, resultado difícil de medir, dependência de poucos nomes.
 
 | Quando faz sentido | Quando evitar |
@@ -126,7 +126,7 @@
 | **Negócio** | Vendas, **CPA/CAC**, ROAS, novos clientes, **LTV** |
 | **Marca** | Aumento de buscas pelo nome, menções espontâneas, sentimento |
 
-**Dica:** dê a cada criador **link UTM e cupom exclusivos**, e peça **relatório** (prints dos Insights) em 7–14 dias.
+**Dica:** dê a cada criador **link UTM e cupom exclusivos**, e peça **relatório** (prints dos Insights) em 7–14 dias.  
 **Aprendizado:** compare **criador × formato × mensagem** — a próxima parceria deve ser **melhor** que a anterior.
 
 ---

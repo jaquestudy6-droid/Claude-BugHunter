@@ -2,8 +2,8 @@
 
 > Duração-alvo: 20–45 s · Formato: 9:16 · (Módulos 05 e 06)
 
-**Título interno:** ______________ · **Rede(s):** ________ · **Pilar:** ________ · **Etapa do funil:** ▢ topo ▢ meio ▢ fundo
-**Ideia única (1 frase):** __________________________________________
+**Título interno:** ______________ · **Rede(s):** ________ · **Pilar:** ________ · **Etapa do funil:** ▢ topo ▢ meio ▢ fundo  
+**Ideia única (1 frase):** __________________________________________  
 **Quem é a pessoa e o que ela vai ganhar?** __________________________
 
 ---

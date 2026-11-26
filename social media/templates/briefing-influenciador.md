@@ -2,13 +2,13 @@
 
 > (Módulo 10) — Combine por escrito. Em caso de dúvida jurídica, consulte profissional.
 
-**Marca:** ____________ · **Campanha:** ____________ · **Contato:** ____________
+**Marca:** ____________ · **Campanha:** ____________ · **Contato:** ____________  
 **Criador(a):** ____________ · **Rede(s):** ____________ · **Data:** ____/____/____
 
 ---
 
 ## 1. Objetivo
-▢ Awareness ▢ Tráfego ▢ Vendas ▢ Conteúdo para anúncios (direitos de uso) ▢ Lançamento ▢ Outro: ______
+▢ Awareness ▢ Tráfego ▢ Vendas ▢ Conteúdo para anúncios (direitos de uso) ▢ Lançamento ▢ Outro: ______  
 **Resultado esperado (meta):** ______________________________
 
 ## 2. Sobre a marca e o produto

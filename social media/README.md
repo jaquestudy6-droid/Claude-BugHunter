@@ -1,6 +1,6 @@
 # 📱 SOCIAL MEDIA — do zero ao avançado
 
-> Uma jornada em forma de jogo. Você começa como **Turista** e termina como **Mestre**.
+> Uma jornada em forma de jogo. Você começa como **Turista** e termina como **Mestre**.  
 > Cada módulo tem explicação, analogias, laboratório prático, mini-jogo, "chefe final" (quiz) e vídeos.
 
 **Criada em:** 26/11/2026 · **Idioma:** português (BR) · **Pré-requisito:** nenhum (só curiosidade e um celular)
@@ -85,7 +85,7 @@ Aprender é como academia: **assistir não é treinar**. Use o ciclo **VER → F
 | 🚶 Regular | 3 módulos por semana | ~5 semanas |
 | 🚀 Intensivo | 1 módulo por dia (Projeto final à parte) | ~15 dias + projeto |
 
-**Diário de estudos:** copie `templates/diario-de-estudos.md` e anote 3 coisas por sessão:
+**Diário de estudos:** copie `templates/diario-de-estudos.md` e anote 3 coisas por sessão:  
 *o que aprendi · o que testei · o que vou mudar*.
 
 ---
@@ -93,7 +93,7 @@ Aprender é como academia: **assistir não é treinar**. Use o ciclo **VER → F
 ## ⚠️ Avisos importantes (leia uma vez)
 
 1. **Plataformas mudam rápido.** Recursos, nomes, regras e "melhores práticas" mudam de meses em meses.
-   Os **princípios** (atenção, relevância, clareza, valor, confiança) duram muito; os **detalhes** (tamanhos,
+   Os **princípios** (atenção, relevância, clareza, valor, confiança) duram muito; os **detalhes** (tamanhos,  
    menus, pesos de sinais) devem ser conferidos nas fontes oficiais. Onde algo é muito volátil, o material avisa.
 2. **Números de "algoritmo" são, em geral, informação de terceiros.** Só as próprias plataformas sabem
    os pesos reais — e raramente os revelam por completo. O material separa *o que a plataforma disse* de *o que o mercado acredita*.

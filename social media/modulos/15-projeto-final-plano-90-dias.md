@@ -1,6 +1,6 @@
 # 🏆 Módulo 15 — Projeto final: o Plano de 90 dias
 
-> **Mundo 5 · Maestria** · ⏱ 10h+ (ao longo de 2–4 semanas) · 🎯 Meta: **provar** que você domina o conteúdo, entregando um plano completo e **executando o 1º mês**
+> **Mundo 5 · Maestria** · ⏱ 10h+ (ao longo de 2–4 semanas) · 🎯 Meta: **provar** que você domina o conteúdo, entregando um plano completo e **executando o 1º mês**  
 > **Pré-requisitos:** Módulos 01–14 · **XP:** **300**
 
 ---
@@ -149,7 +149,7 @@ Marque apenas o que consegue explicar **sem consultar**:
 5. **Ensine**: quem ensina aprende duas vezes. Faça um post, um vídeo ou um workshop para iniciantes.
 
 ### Mensagem final
-> Social media muda de forma — o que **não muda** é que **pessoas** querem **atenção respeitosa, valor real e confiança**.
+> Social media muda de forma — o que **não muda** é que **pessoas** querem **atenção respeitosa, valor real e confiança**.  
 > Quem domina esses princípios e **testa, mede e aprende** sempre vai se adaptar.
 
 🏁 **Parabéns, Mestre.** Agora vá construir algo que valha a atenção de alguém.

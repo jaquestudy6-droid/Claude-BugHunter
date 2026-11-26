@@ -1,6 +1,6 @@
 # 🧠 Módulo 05 — Conteúdo & criatividade
 
-> **Mundo 2 · Planejamento** · ⏱ ~3h30 · 🎯 Meta: criar ganchos, roteiros, legendas e um calendário que sustentem seu perfil por meses
+> **Mundo 2 · Planejamento** · ⏱ ~3h30 · 🎯 Meta: criar ganchos, roteiros, legendas e um calendário que sustentem seu perfil por meses  
 > **Pré-requisitos:** Módulos 01–04 · **XP:** 100
 
 ---

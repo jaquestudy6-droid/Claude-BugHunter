@@ -1,6 +1,6 @@
 # 👑 Módulo 14 — Estratégia avançada
 
-> **Mundo 5 · Maestria** · ⏱ ~3h · 🎯 Meta: pensar como estrategista sênior — loops de crescimento, experimentação, busca social, marca × performance, atribuição e futuro
+> **Mundo 5 · Maestria** · ⏱ ~3h · 🎯 Meta: pensar como estrategista sênior — loops de crescimento, experimentação, busca social, marca × performance, atribuição e futuro  
 > **Pré-requisitos:** Módulos 01–13 · **XP:** 100
 
 > 🔭 As tendências abaixo refletem o cenário até **novembro de 2026** e **mudam rápido**. Treine o **método de pensar**, não decore o "momento".
@@ -134,7 +134,7 @@ O cliente transita: vê um Reels → pesquisa no Google → entra no site → fa
 | **MMM** (*Marketing Mix Modeling*) | Estatística agregada (investimento × vendas ao longo do tempo) | Precisa de histórico e especialização |
 
 ### Incrementalidade
-Pergunta crucial: **"Essas vendas teriam acontecido sem o anúncio/ação?"**
+Pergunta crucial: **"Essas vendas teriam acontecido sem o anúncio/ação?"**  
 Métodos: **grupos de controle (holdout)**, **testes geográficos**, **pausar por período** e comparar. É a forma mais honesta de medir **o que realmente foi causado**.
 
 > 🧭 Combine: **dados de plataforma + analytics + pesquisas de origem + testes de incrementalidade**. Nenhuma fonte sozinha conta a história toda.
@@ -213,13 +213,13 @@ Métodos: **grupos de controle (holdout)**, **testes geográficos**, **pausar po
 
 Pontue (1–10) e ordene estas 3 ideias de teste para uma loja de roupas (I, C, E):
 
-A) Trocar a capa dos carrosséis para um estilo novo
-B) Criar uma série semanal de "provadores reais" com clientes
+A) Trocar a capa dos carrosséis para um estilo novo  
+B) Criar uma série semanal de "provadores reais" com clientes  
 C) Reformular toda a identidade visual
 
 <details><summary>👀 Exemplo de resposta</summary>
 
-A) I=5, C=6, E=9 → **6,7** · B) I=8, C=7, E=6 → **7,0** · C) I=7, C=4, E=2 → **4,3**
+A) I=5, C=6, E=9 → **6,7** · B) I=8, C=7, E=6 → **7,0** · C) I=7, C=4, E=2 → **4,3**  
 **Ordem sugerida:** B, A, C. *(Suas notas podem variar; o importante é **justificar** e **testar**.)*
 </details>
 

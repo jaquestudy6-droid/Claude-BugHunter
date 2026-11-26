@@ -1,6 +1,6 @@
 # 🌱 Módulo 01 — O que é social media
 
-> **Mundo 1 · Fundamentos** · ⏱ ~1h30 · 🎯 Meta: explicar o ecossistema das redes a qualquer pessoa em 2 minutos
+> **Mundo 1 · Fundamentos** · ⏱ ~1h30 · 🎯 Meta: explicar o ecossistema das redes a qualquer pessoa em 2 minutos  
 > **Pré-requisitos:** nenhum · **XP:** 100
 
 ---
@@ -93,7 +93,7 @@ Isso explica **por que um perfil pequeno hoje pode viralizar** — e por que ter
 
 ## 4️⃣ Como as plataformas ganham dinheiro (e por que isso importa)
 
-A maioria das grandes redes é gratuita para o usuário e ganha principalmente com **anúncios**.
+A maioria das grandes redes é gratuita para o usuário e ganha principalmente com **anúncios**.  
 Isso cria a chamada **economia da atenção**: o recurso escasso e valioso é o **tempo e a atenção das pessoas**.
 
 Outras fontes de receita: assinaturas (ex.: planos pagos), comissões de vendas (social commerce), ferramentas para criadores e empresas, dados agregados para segmentação.
@@ -119,7 +119,7 @@ Um modelo clássico de marketing digital separa os "tipos de mídia" em três (�
 | **Ganha (Earned)** | Os outros falam de você, sem pagar | Menções, compartilhamentos, imprensa, avaliações | **Boca a boca / reputação** |
 | *(Compartilhada)* | Conteúdo em espaços compartilhados | Comentários, UGC, posts de fãs | A **praça** em si |
 
-**Orgânico** ≈ o que você publica sem pagar distribuição (própria + parte da ganha).
+**Orgânico** ≈ o que você publica sem pagar distribuição (própria + parte da ganha).  
 **Pago** ≈ distribuição comprada.
 
 > 🎯 Uma estratégia saudável combina os três: *a casa* (própria) cria o conteúdo, *o outdoor* (pago) amplifica o que já funciona, e *o boca a boca* (ganho) é o resultado de fazer algo que vale a pena compartilhar.
@@ -147,7 +147,7 @@ Um dia típico (varia muito por empresa):
 
 **Material:** celular + caderno (ou `templates/diario-de-estudos.md`).
 
-Escolha **3 perfis**: uma marca que você admira, uma pessoa/criador, e um perfil de um negócio local.
+Escolha **3 perfis**: uma marca que você admira, uma pessoa/criador, e um perfil de um negócio local.  
 Para cada um, responda:
 
 1. Em **uma frase**: sobre o que é este perfil? (se você não consegue, já é um problema de posicionamento)
@@ -183,9 +183,9 @@ Classifique cada situação como **P**rópria, **Pa**ga ou **G**anha. (Resposta 
 
 ## ⚔️ Chefe final do Módulo 01
 
-**1.** Qual a diferença entre *rede social* e *social media*?
-**2.** Por que, hoje, um perfil pequeno pode viralizar mesmo com poucos seguidores?
-**3.** O que é "economia da atenção" e o que ela implica para quem cria conteúdo?
+**1.** Qual a diferença entre *rede social* e *social media*?  
+**2.** Por que, hoje, um perfil pequeno pode viralizar mesmo com poucos seguidores?  
+**3.** O que é "economia da atenção" e o que ela implica para quem cria conteúdo?  
 **4.** Dê um exemplo de mídia **própria**, uma **paga** e uma **ganha**.
 
 <details><summary>👀 Respostas-modelo</summary>

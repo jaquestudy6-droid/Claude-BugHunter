@@ -1,6 +1,6 @@
 # 📊 Módulo 09 — Anúncios pagos
 
-> **Mundo 4 · Dados & Crescimento** · ⏱ ~3h30 · 🎯 Meta: entender como funcionam os anúncios em redes e planejar/testar uma campanha com método
+> **Mundo 4 · Dados & Crescimento** · ⏱ ~3h30 · 🎯 Meta: entender como funcionam os anúncios em redes e planejar/testar uma campanha com método  
 > **Pré-requisitos:** Módulos 01–08 · **XP:** 100
 
 > ⚠️ **Aviso:** interfaces e nomes de recursos de anúncios mudam com muita frequência (ex.: automação "Advantage+" da Meta). Aprenda **os princípios** aqui e confirme a **tela atual** na Central de Ajuda oficial / Meta Blueprint / Skillshop.

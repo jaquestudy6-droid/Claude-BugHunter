@@ -1,6 +1,6 @@
 # 🎬 Módulo 07 — Comunidade & marca pessoal
 
-> **Mundo 3 · Produção & Pessoas** · ⏱ ~2h30 · 🎯 Meta: transformar seguidores em comunidade — e construir uma reputação (a sua ou a da marca) que as pessoas confiam
+> **Mundo 3 · Produção & Pessoas** · ⏱ ~2h30 · 🎯 Meta: transformar seguidores em comunidade — e construir uma reputação (a sua ou a da marca) que as pessoas confiam  
 > **Pré-requisitos:** Módulos 01–06 · **XP:** 100
 
 ---
@@ -196,12 +196,12 @@ Não é "ser influencer". É ser **lembrado pelo que faz bem** e **confiável**.
 
 ## 🎮 Mini-jogo — Responda como um(a) pro
 
-Comentário público: **"Comprei na semana passada e a entrega está atrasada. Péssimo atendimento!"**
+Comentário público: **"Comprei na semana passada e a entrega está atrasada. Péssimo atendimento!"**  
 Qual a melhor resposta?
 
-A) "Entre em contato com o SAC."
-B) "Oi, Carla! Sentimos muito pelo atraso 💙 Já queremos resolver: pode nos chamar na DM com o número do pedido? Vamos verificar agora mesmo."
-C) "Nosso prazo é de até 15 dias, leia os termos."
+A) "Entre em contato com o SAC."  
+B) "Oi, Carla! Sentimos muito pelo atraso 💙 Já queremos resolver: pode nos chamar na DM com o número do pedido? Vamos verificar agora mesmo."  
+C) "Nosso prazo é de até 15 dias, leia os termos."  
 D) *(apaga o comentário)*
 
 <details><summary>👀 Resposta</summary>

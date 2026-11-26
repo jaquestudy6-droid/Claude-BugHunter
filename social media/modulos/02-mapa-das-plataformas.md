@@ -1,6 +1,6 @@
 # 🌱 Módulo 02 — Mapa das plataformas
 
-> **Mundo 1 · Fundamentos** · ⏱ ~2h · 🎯 Meta: escolher onde estar, em que formato e por quê
+> **Mundo 1 · Fundamentos** · ⏱ ~2h · 🎯 Meta: escolher onde estar, em que formato e por quê  
 > **Pré-requisitos:** Módulo 01 · **XP:** 100
 
 ---
@@ -19,7 +19,7 @@
 
 ## 1️⃣ A ideia central: cada rede é um país
 
-Postar o mesmo conteúdo em todas as redes sem adaptar é como **falar português em todos os países e esperar ser entendido**.
+Postar o mesmo conteúdo em todas as redes sem adaptar é como **falar português em todos os países e esperar ser entendido**.  
 Cada plataforma tem **idioma** (formatos), **cultura** (o que é aceito) e **leis** (algoritmo e regras).
 
 > 🧳 Você não precisa morar em todos os países. Precisa saber **onde seu público mora** e **falar a língua local**.
@@ -202,9 +202,9 @@ Para cada cenário, escolha a rede **mais** adequada (pode haver mais de uma def
 
 ## ⚔️ Chefe final do Módulo 02
 
-**1.** Cite 3 perguntas para entender uma plataforma nova.
-**2.** O que significa "vida útil" de um conteúdo e por que isso muda sua estratégia?
-**3.** Explique o método 1-2-3.
+**1.** Cite 3 perguntas para entender uma plataforma nova.  
+**2.** O que significa "vida útil" de um conteúdo e por que isso muda sua estratégia?  
+**3.** Explique o método 1-2-3.  
 **4.** Por que "postar o mesmo arquivo em todas as redes" costuma ser ruim?
 
 <details><summary>👀 Respostas-modelo</summary>

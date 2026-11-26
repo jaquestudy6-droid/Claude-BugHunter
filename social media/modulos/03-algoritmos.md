@@ -1,6 +1,6 @@
 # 🌱 Módulo 03 — Como funcionam os algoritmos
 
-> **Mundo 1 · Fundamentos** · ⏱ ~2h30 · 🎯 Meta: entender *por que* um conteúdo é (ou não) distribuído — sem superstição
+> **Mundo 1 · Fundamentos** · ⏱ ~2h30 · 🎯 Meta: entender *por que* um conteúdo é (ou não) distribuído — sem superstição  
 > **Pré-requisitos:** Módulos 01–02 · **XP:** 100
 
 ---
@@ -106,7 +106,7 @@ Histórico da pessoa, relação com o criador, assunto, idioma, localização, h
 > 🧭 Princípio: **priorize fontes oficiais**; trate o resto como hipótese.
 
 ### YouTube (fonte oficial: "How YouTube Works")
-A própria empresa explica que seu sistema de recomendação aprende com **muitos sinais**, entre eles: **histórico de exibição**, **histórico de pesquisas**, **inscrições**, **curtidas/descurtidas**, feedback **"Não tenho interesse"/"Não recomendar canal"** e **pesquisas de satisfação**. O vídeo que você está assistindo é o principal sinal para o próximo vídeo sugerido, enquanto a **página inicial** usa muito o histórico. Para temas informativos, também considera **autoridade e reputação** do canal.
+A própria empresa explica que seu sistema de recomendação aprende com **muitos sinais**, entre eles: **histórico de exibição**, **histórico de pesquisas**, **inscrições**, **curtidas/descurtidas**, feedback **"Não tenho interesse"/"Não recomendar canal"** e **pesquisas de satisfação**. O vídeo que você está assistindo é o principal sinal para o próximo vídeo sugerido, enquanto a **página inicial** usa muito o histórico. Para temas informativos, também considera **autoridade e reputação** do canal.  
 🔗 [youtube.com/howyoutubeworks/recommendations](https://www.youtube.com/howyoutubeworks/recommendations/)
 
 ### Instagram
@@ -221,10 +221,10 @@ Responda **M** (mito) ou **V** (verdade):
 
 ## ⚔️ Chefe final do Módulo 03
 
-**1.** Por que "o algoritmo" é uma simplificação?
-**2.** Qual a diferença entre grafo social e grafo de interesses? Por que isso importa para crescer?
-**3.** Cite 3 sinais positivos e 2 negativos.
-**4.** O que são "ondas de teste" e que lição prática elas trazem?
+**1.** Por que "o algoritmo" é uma simplificação?  
+**2.** Qual a diferença entre grafo social e grafo de interesses? Por que isso importa para crescer?  
+**3.** Cite 3 sinais positivos e 2 negativos.  
+**4.** O que são "ondas de teste" e que lição prática elas trazem?  
 **5.** Por que blogs que dão "pesos exatos" dos sinais merecem cautela?
 
 <details><summary>👀 Respostas-modelo</summary>

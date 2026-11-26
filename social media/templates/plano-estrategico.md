@@ -28,10 +28,10 @@
 | Conversão/Retenção | | | | |
 
 ## 3. Público e persona
-**Nome fictício:** ____ · **Idade/Profissão:** ____
-**Rotina e uso de redes:** ______________________________
-**Desejos:** ______________ · **Dores/objeções:** ______________
-**Quem a influencia:** ______________ · **Como fala:** ______________
+**Nome fictício:** ____ · **Idade/Profissão:** ____  
+**Rotina e uso de redes:** ______________________________  
+**Desejos:** ______________ · **Dores/objeções:** ______________  
+**Quem a influencia:** ______________ · **Como fala:** ______________  
 **Gatilho de decisão:** ______________
 
 ## 4. Posicionamento e voz

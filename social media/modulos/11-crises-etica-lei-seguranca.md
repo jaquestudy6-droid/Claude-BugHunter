@@ -1,6 +1,6 @@
 # 👑 Módulo 11 — Crises, ética, lei e segurança
 
-> **Mundo 5 · Maestria** · ⏱ ~2h30 · 🎯 Meta: proteger a marca, as pessoas e as contas — e agir com responsabilidade
+> **Mundo 5 · Maestria** · ⏱ ~2h30 · 🎯 Meta: proteger a marca, as pessoas e as contas — e agir com responsabilidade  
 > **Pré-requisitos:** Módulos 01–10 · **XP:** 100
 
 > ⚖️ **Aviso:** conteúdo **educativo**, não é aconselhamento jurídico. Leis e regras de plataformas mudam; consulte fontes oficiais e profissionais quando houver risco.

@@ -1,6 +1,6 @@
 # 👑 Módulo 13 — Carreira, negócio e monetização
 
-> **Mundo 5 · Maestria** · ⏱ ~2h · 🎯 Meta: transformar o que você aprendeu em **trabalho, renda e reputação** — de forma realista
+> **Mundo 5 · Maestria** · ⏱ ~2h · 🎯 Meta: transformar o que você aprendeu em **trabalho, renda e reputação** — de forma realista  
 > **Pré-requisitos:** Módulos 01–12 · **XP:** 100
 
 > 💬 Aviso: valores, regras fiscais e requisitos de monetização das plataformas **mudam**. Os números abaixo são **exemplos didáticos** — pesquise valores do seu mercado e consulte um(a) contador(a).

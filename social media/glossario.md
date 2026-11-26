@@ -1,6 +1,6 @@
 # 📖 Glossário de Social Media
 
-> Termos em ordem alfabética, em linguagem simples. O número entre parênteses indica o módulo onde o tema é explicado a fundo.
+> Termos em ordem alfabética, em linguagem simples. O número entre parênteses indica o módulo onde o tema é explicado a fundo.  
 > *Siglas e definições de métricas podem variar entre plataformas — confira o glossário oficial da rede.*
 
 ---

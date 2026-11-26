@@ -1,6 +1,6 @@
 # 🎬 Módulo 06 — Produção visual e vídeo
 
-> **Mundo 3 · Produção & Pessoas** · ⏱ ~3h · 🎯 Meta: produzir posts e vídeos de qualidade profissional **usando só o celular** e ferramentas gratuitas
+> **Mundo 3 · Produção & Pessoas** · ⏱ ~3h · 🎯 Meta: produzir posts e vídeos de qualidade profissional **usando só o celular** e ferramentas gratuitas  
 > **Pré-requisitos:** Módulos 01–05 · **XP:** 100
 
 ---

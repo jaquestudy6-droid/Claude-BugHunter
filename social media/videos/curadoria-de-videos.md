@@ -1,10 +1,10 @@
 # 📺 Curadoria de vídeos — Social Media
 
-> **Como esta lista foi feita (leia, é importante):**
-> - Os vídeos foram **encontrados por busca no YouTube em 26/11/2026** e organizados por módulo. Os **títulos e links apareceram nos resultados**.
-> - **Eu não assisti aos vídeos na íntegra.** Portanto **não garanto qualidade, precisão nem atualização** de cada um. Tratei esta lista como **ponto de partida**, não como "ranking dos melhores".
-> - Para ajudar, a seção **"Ficha de avaliação"** abaixo ensina a **separar vídeo bom de enrolação** em 2 minutos — use antes de seguir qualquer conselho.
-> - Redes mudam rápido: **prefira vídeos recentes** e **confirme detalhes técnicos** nas fontes oficiais.
+> **Como esta lista foi feita (leia, é importante):**  
+> - Os vídeos foram **encontrados por busca no YouTube em 26/11/2026** e organizados por módulo. Os **títulos e links apareceram nos resultados**.  
+> - **Eu não assisti aos vídeos na íntegra.** Portanto **não garanto qualidade, precisão nem atualização** de cada um. Tratei esta lista como **ponto de partida**, não como "ranking dos melhores".  
+> - Para ajudar, a seção **"Ficha de avaliação"** abaixo ensina a **separar vídeo bom de enrolação** em 2 minutos — use antes de seguir qualquer conselho.  
+> - Redes mudam rápido: **prefira vídeos recentes** e **confirme detalhes técnicos** nas fontes oficiais.  
 > - Alguns links levam a **vídeos de empresas de ferramentas** (demonstrações comerciais). Eles ensinam, mas também vendem.
 
 Legenda: 🇧🇷 português · 🇺🇸 inglês · 🇪🇸 espanhol · 🏛️ fonte oficial/da própria plataforma · 🎓 aula/curso · 🧪 prático/tutorial · 🧠 conceito · ⚠️ ressalva
@@ -315,7 +315,7 @@ Não há (ainda) um "vídeo definitivo" confirmado para este módulo. **Estraté
 ## Módulo 14
 *Estratégia avançada*
 
-Vídeos específicos não foram confirmados nesta busca. **Sugestões de pesquisa** (aplique a Ficha de avaliação):
+Vídeos específicos não foram confirmados nesta busca. **Sugestões de pesquisa** (aplique a Ficha de avaliação):  
 `growth loops explicado` · `ICE scoring framework` · `social SEO como funciona` · `brand vs performance marketing` · `incrementality test marketing` · `marketing mix modeling explicado`
 
 📖 Livros e referências (procure em bibliotecas/livrarias): *The Long and the Short of It* (Binet & Field) · artigo "1.000 True Fans" (Kevin Kelly).

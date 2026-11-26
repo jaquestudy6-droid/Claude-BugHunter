@@ -1,6 +1,6 @@
 # 🧠 Módulo 04 — Estratégia
 
-> **Mundo 2 · Planejamento** · ⏱ ~3h · 🎯 Meta: montar um plano de redes sociais de 1 página com objetivo, público, posicionamento e pilares
+> **Mundo 2 · Planejamento** · ⏱ ~3h · 🎯 Meta: montar um plano de redes sociais de 1 página com objetivo, público, posicionamento e pilares  
 > **Pré-requisitos:** Módulos 01–03 · **XP:** 100
 
 ---
@@ -23,7 +23,7 @@
 
 ## 1️⃣ Por que "postar" não é estratégia
 
-> **Tática** = o que você faz (postar um Reels às 18h).
+> **Tática** = o que você faz (postar um Reels às 18h).  
 > **Estratégia** = *por que* faz, *para quem* e *para chegar onde*.
 
 **Analogia da viagem de carro:** táticas são pisar no acelerador, trocar de marcha, ligar o rádio. Estratégia é **saber o destino, escolher a rota e checar o combustível**. Sem destino, você só gasta gasolina (tempo e dinheiro).
@@ -97,7 +97,7 @@ Escolha **5 perfis** (concorrentes diretos, indiretos e referências de outro se
 | "Vender mais." | "Gerar **40 pedidos/mês** via WhatsApp vindos do Instagram até **março**, com CPA ≤ R$ 25." |
 
 ### 4.3 Dica avançada: OKRs
-**Objetivo** (inspirador, qualitativo) + 2–4 **Resultados-chave** (números).
+**Objetivo** (inspirador, qualitativo) + 2–4 **Resultados-chave** (números).  
 *Ex.: Objetivo: "Ser a referência de receitas veganas rápidas." KR1: 10 mil inscritos no YouTube; KR2: 3% de taxa de salvamento nos carrosséis; KR3: 500 cadastros na newsletter.*
 
 > ⚠️ **Cuidado com métricas de vaidade:** seguidores e curtidas sozinhos não pagam boletos. Conecte sempre ao **objetivo de negócio** (módulo 08).

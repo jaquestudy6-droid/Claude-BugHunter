@@ -1,6 +1,6 @@
 # 📊 Módulo 08 — Métricas e análise
 
-> **Mundo 4 · Dados & Crescimento** · ⏱ ~3h · 🎯 Meta: ler números, diagnosticar problemas e transformar dados em decisões
+> **Mundo 4 · Dados & Crescimento** · ⏱ ~3h · 🎯 Meta: ler números, diagnosticar problemas e transformar dados em decisões  
 > **Pré-requisitos:** Módulos 01–07 · **XP:** 100
 
 ---
@@ -73,13 +73,13 @@ Existem **variações**. Defina uma e use sempre a mesma.
 
 *Interações* = curtidas + comentários + salvamentos + compartilhamentos (defina o que entra e mantenha).
 
-**Exemplo:** post com 120 curtidas + 15 comentários + 40 salvamentos + 25 compartilhamentos = **200 interações**.
+**Exemplo:** post com 120 curtidas + 15 comentários + 40 salvamentos + 25 compartilhamentos = **200 interações**.  
 Alcance = 5.000 · Seguidores = 8.000
 - ER por alcance = 200 ÷ 5.000 × 100 = **4,0%**
 - ER por seguidores = 200 ÷ 8.000 × 100 = **2,5%**
 
 ### 3.2 CTR (taxa de cliques)
-**CTR** = (cliques ÷ impressões) × 100
+**CTR** = (cliques ÷ impressões) × 100  
 Ex.: 300 cliques ÷ 20.000 impressões = **1,5%**
 
 ### 3.3 Métricas de custo
@@ -95,7 +95,7 @@ Ex.: 300 cliques ÷ 20.000 impressões = **1,5%**
 - **Retenção média** = duração média assistida ÷ duração do vídeo → 12 s ÷ 30 s = **40%**
 
 ### 3.5 Crescimento líquido
-**Crescimento líquido de seguidores** = novos − que deixaram de seguir.
+**Crescimento líquido de seguidores** = novos − que deixaram de seguir.  
 **Taxa de crescimento** = (novos líquidos ÷ seguidores no início) × 100.
 
 > 🧮 No jogo interativo há uma **Calculadora de Métricas** para praticar.

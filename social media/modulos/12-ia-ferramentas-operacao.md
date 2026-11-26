@@ -1,6 +1,6 @@
 # 👑 Módulo 12 — IA, ferramentas e operação
 
-> **Mundo 5 · Maestria** · ⏱ ~2h30 · 🎯 Meta: montar um fluxo de trabalho eficiente com IA e ferramentas — **sem perder voz, verdade e qualidade**
+> **Mundo 5 · Maestria** · ⏱ ~2h30 · 🎯 Meta: montar um fluxo de trabalho eficiente com IA e ferramentas — **sem perder voz, verdade e qualidade**  
 > **Pré-requisitos:** Módulos 01–11 · **XP:** 100
 
 > ⚠️ Ferramentas de IA e de gestão mudam **muito rápido** (preços, nomes, recursos). Foque nos **processos e princípios**; confira as ferramentas atuais antes de contratar.
